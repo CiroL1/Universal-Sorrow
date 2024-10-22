@@ -1,9 +1,9 @@
-#University Life Idle Game
+# University Life Idle Game
 Welcome to the University Life Idle Game, where you step into the shoes of a university student navigating the challenges of academic life!
 
 ---
 
-###Overview
+### Overview:
 In this idle game, you manage your character's daily activities, balancing studies, work, social interactions, and rest. Your goal is to optimize your three key stats: Approval Probability, Money, and Sanity. Each "day," you will choose from four options:
 
 Study: Increase your approval probability, but risk your sanity.
@@ -13,13 +13,13 @@ Rest: Recover sanity, stabilize your approval probability, but do not generate i
 
 ---
 
-###Gameplay Mechanics
+### Gameplay Mechanics:
 Stats Interaction: Your choices influence your stats in various ways. Low sanity can negatively affect your study efficiency, while insufficient money may force you to work more, impacting your academic performance and mental health.
 Strategic Decision-Making: Finding the right balance between studying, working, and socializing is key to succeeding in your university journey.
 
 ---
 
-###Features
+### Features:
 Engaging idle mechanics
 Dynamic interactions between stats
 Fun and relatable university-themed scenarios
