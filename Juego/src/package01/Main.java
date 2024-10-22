@@ -19,8 +19,8 @@ public class Main {
 
     public Main() {
         ui.createUI(cHandler);
-        story.defaultSetup();
         vm.showTitleScreen();
+        //story.defaultSetup();
     }
 
     public class ChoiceHandler implements ActionListener {
