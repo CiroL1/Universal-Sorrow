@@ -20,7 +20,7 @@ Strategic Decision-Making: Finding the right balance between studying, working, 
 ---
 
 ### Features:
-Engaging idle mechanics
-Dynamic interactions between stats
-Fun and relatable university-themed scenarios
-Every decision counts!
+- Engaging idle mechanics
+- Dynamic interactions between stats
+- Fun and relatable university-themed scenarios
+- Every decision counts!
