@@ -90,6 +90,7 @@ public class Story {
             case "Sleep": sleep(); break;
             case "Go out": goOut(); break;
             case "Play videogames": playVideoGames(); break;
+            case ">": beggining(); ui.choice5.setVisible(false); break;
             case "1": estudio("1"); break;
             case "2": estudio("2"); break;
             case "3": estudio("3"); break;
@@ -117,61 +118,81 @@ public class Story {
         ui.choice2.setText("" + materias.get(1).getNombre());
         ui.choice3.setText("" + materias.get(2).getNombre());
         ui.choice4.setText("" + materias.getLast().getNombre());
+        ui.choice5.setVisible(true);
 
         main.nextPosition1 = "1";
         main.nextPosition2 = "2";
         main.nextPosition3 = "3";
         main.nextPosition4 = "4";
+        main.nextPosition5 = ">";
     }
     public void sleep(){
-        ui.mainTextArea.setText("You decide to sleep through the day. \nYour chances of passing decrease by 10% and you feel guilty (-15 of sanity)");
+        ui.mainTextArea.setText("You decide to sleep through the day. \nYour chances of passing decrease and you feel guilty");
         ui.choice1.setText("");
         ui.choice2.setText("");
         ui.choice3.setText("");
         ui.choice4.setText("");
+        ui.choice5.setVisible(true);
 
         main.nextPosition1 = "";
         main.nextPosition2 = "";
         main.nextPosition3 = "";
         main.nextPosition4 = "";
+        main.nextPosition5 = ">";
 
     }
     public void goOut(){
-        ui.mainTextArea.setText("You decide to go out with friends and enjoy the day. \nYour chances of passing decrease by 15%. (-$1500)");
+        ui.mainTextArea.setText("You decide to go out with friends and enjoy the day. \nYour chances of passing decrease. \nYou lose money");
         ui.choice1.setText("");
         ui.choice2.setText("");
         ui.choice3.setText("");
         ui.choice4.setText("");
+        ui.choice5.setVisible(true);
 
         main.nextPosition1 = "";
         main.nextPosition2 = "";
         main.nextPosition3 = "";
         main.nextPosition4 = "";
+        main.nextPosition5 = ">";
     }
     public void playVideoGames(){
+        ui.mainTextArea.setText("You decide to play videogames. \nYour chances of passing decrease and you feel guilty");
+        ui.choice1.setText("");
+        ui.choice2.setText("");
+        ui.choice3.setText("");
+        ui.choice4.setText("");
+        ui.choice5.setVisible(true);
 
+        main.nextPosition1 = "";
+        main.nextPosition2 = "";
+        main.nextPosition3 = "";
+        main.nextPosition4 = "";
+        main.nextPosition5 = ">";
     }
 
     public void estudio(String materia){
         List<Materia> materias  = estudianteActual.getMaterias();
         switch (materia){
-            case "1": ui.mainTextArea.setText("You study " + materias.getFirst().getNombre() + ".\nYou gain");
+            case "1": ui.mainTextArea.setText("You study " + materias.getFirst().getNombre() + ".\nYou gain ");
                 estudianteActual.estudiar(materias.getFirst());
                 ui.sNumberLabel.setText("" + estudianteActual.getCordura());
                 ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
                 ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
             break;
-            case "2": ui.mainTextArea.setText("You study " + materias.get(1).getNombre() + ".\nYou gain"); estudianteActual.estudiar(materias.get(1));
+            case "2": ui.mainTextArea.setText("You study " + materias.get(1).getNombre() + ".\nYou gain");
+                estudianteActual.estudiar(materias.get(1));
                 ui.sNumberLabel.setText("" + estudianteActual.getCordura());
                 ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
                 ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
             break;
-            case "3": ui.mainTextArea.setText("You study " + materias.get(2).getNombre() + ".\nYou gain"); estudianteActual.estudiar(materias.get(2));
+            case "3": ui.mainTextArea.setText("You study " + materias.get(2).getNombre() + ".\nYou gain");
+                estudianteActual.estudiar(materias.get(2));
                 ui.sNumberLabel.setText("" + estudianteActual.getCordura());
                 ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
                 ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
             break;
-            case "4": ui.mainTextArea.setText("You study " + materias.getLast().getNombre() + ".\nYou gain"); estudianteActual.estudiar(materias.getLast());
+            case "4": ui.mainTextArea.setText("You study " + materias.getLast().getNombre() + ".\nYou gain");
+                estudianteActual.estudiar(materias.getLast());
                 ui.sNumberLabel.setText("" + estudianteActual.getCordura());
                 ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
                 ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());

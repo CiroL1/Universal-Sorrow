@@ -9,7 +9,7 @@ public class Main {
     VisibilityManager vm = new VisibilityManager(ui);
     Story story = new Story(this, ui, vm);
 
-    String nextPosition1, nextPosition2, nextPosition3, nextPosition4;
+    String nextPosition1, nextPosition2, nextPosition3, nextPosition4, nextPosition5;
 
     public static void main(String[] args) {
 
@@ -58,6 +58,9 @@ public class Main {
                     break;
                 case "choice4":
                     story.selectPosition(nextPosition4);
+                    break;
+                case ">":
+                    story.selectPosition(nextPosition5);
                     break;
                 case "quit":
                     System.exit(0);

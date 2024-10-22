@@ -7,7 +7,7 @@ public class UI {
     JFrame window;
     JPanel titleNamePanel, startButtonPanel,quitButtonPanel, difficultyPanel, mainTextPanel, choiceButtonPanel, playerPanel;
     JLabel titleNameLabel, sanityLabel, sNumberLabel, moneyLabel, moneyNameLabel, passChanceLabel, pcNameLabel;
-    JButton startButton, quitButton, difEasy, difMedium, difHard, choice1, choice2, choice3, choice4;
+    JButton startButton, quitButton, difEasy, difMedium, difHard, choice1, choice2, choice3, choice4, choice5;
     JTextArea mainTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 26);
@@ -119,9 +119,9 @@ public class UI {
 
         //Choices
         choiceButtonPanel = new JPanel();
-        choiceButtonPanel.setBounds(250, 350, 300, 150);
+        choiceButtonPanel.setBounds(250, 300, 300, 200);
         choiceButtonPanel.setBackground(Color.black);
-        choiceButtonPanel.setLayout(new GridLayout(4, 1));
+        choiceButtonPanel.setLayout(new GridLayout(5, 1));
         choiceButtonPanel.setVisible(false);
         window.add(choiceButtonPanel);
 
@@ -160,6 +160,16 @@ public class UI {
         choice4.addActionListener(cHandler);
         choice4.setActionCommand("choice4");
         choiceButtonPanel.add(choice4);
+
+        choice5 = new JButton(">");
+        choice5.setBackground(Color.black);
+        choice5.setForeground(Color.white);
+        choice5.setFont(normalFont);
+        choice5.setFocusPainted(false);
+        choice5.addActionListener(cHandler);
+        choice5.setActionCommand(">");
+        choiceButtonPanel.add(choice5);
+        choice5.setVisible(false);
 
         playerPanel = new JPanel();
         playerPanel.setBounds(90, 15, 650, 50);
