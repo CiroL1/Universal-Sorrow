@@ -15,7 +15,7 @@ public class UI {
     public void createUI(Main.ChoiceHandler cHandler){
 
         //window
-        window = new JFrame();
+        window = new JFrame("Universal Sorrow");
         window.setSize(800, 600);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.black);
