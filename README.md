@@ -1,10 +1,10 @@
 # Universal Sorrow
-Welcome to the University Life Idle Game, where you step into the shoes of a university student navigating the challenges of academic life!
+Welcome to the Universal Sorrow, where you step into the shoes of a university student navigating the challenges of academic life!
 
 ---
 
 ### Overview:
-In this idle game, you manage your character's daily activities, balancing studies, work, social interactions, and rest. Your goal is to optimize your three key stats: Approval Probability, Money, and Sanity. Each "day," you will choose from four options:
+You manage your character's daily activities, balancing studies, work, social interactions, and rest. Your goal is to optimize your three key stats: Approval Probability, Money, and Sanity. Each "day," you will choose from four options:
 
 Study: Increase your approval probability, but risk your sanity.
 Work: Earn money, but decrease your study time and sanity.
@@ -23,4 +23,4 @@ Strategic Decision-Making: Finding the right balance between studying, working, 
 Engaging idle mechanics
 Dynamic interactions between stats
 Fun and relatable university-themed scenarios
-Join us on this humorous journey of academic life, where every decision counts!
+Every decision counts!
