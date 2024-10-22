@@ -2,13 +2,12 @@ package package01;
 import Objetos.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Story {
-
     Main main;
     UI ui;
     VisibilityManager vm;
+    private Estudiante estudianteActual;
 
     public Story(Main main, UI ui, VisibilityManager vm) {
         this.main = main;
@@ -16,7 +15,7 @@ public class Story {
         this.vm = vm;
     }
 
-    public Estudiante estudianteMarketing(){
+    public Estudiante estudianteMarketing() {
         //easy
         ArrayList<Materia> materias = new ArrayList<>();
         ArrayList<Bono> bonos = new ArrayList<>();
@@ -25,7 +24,7 @@ public class Story {
         return estudiante;
     }
 
-    public Estudiante estudianteArtes(){
+    public Estudiante estudianteArtes() {
         //medium
         ArrayList<Materia> materias = new ArrayList<>();
         ArrayList<Bono> bonos = new ArrayList<>();
@@ -34,7 +33,7 @@ public class Story {
         return estudiante;
     }
 
-    public Estudiante estudianteIngenieria(){
+    public Estudiante estudianteIngenieria() {
         //hard
         ArrayList<Materia> materias = new ArrayList<>();
         ArrayList<Bono> bonos = new ArrayList<>();
@@ -43,7 +42,7 @@ public class Story {
         return estudiante;
     }
 
-    public Estudiante difficultyChosen(String dificultad){
+    public Estudiante difficultyChosen(String dificultad) {
         Estudiante estudiante = null; // Inicializa el estudiante
 
         switch (dificultad) {
@@ -58,24 +57,15 @@ public class Story {
                 break;
         }
         setEstudiante(estudiante);
+        defaultSetup(estudiante);
         return estudiante;
     }
-
-    private Estudiante estudianteActual; // Campo para almacenar el estudiante
-
-    // Otros métodos y atributos de la clase
 
     public void setEstudiante(Estudiante estudiante) {
         this.estudianteActual = estudiante; // Método para establecer el estudiante
     }
 
-    public Estudiante getEstudiante() {
-        return this.estudianteActual; // Método para obtener el estudiante actual
-    }
-
-    Estudiante estudiante = getEstudiante();
-
-    public void defaultSetup(){
+    public void defaultSetup(Estudiante estudiante){
         double estudianteCordura = estudiante.getCordura();
         double estudiantePlata = estudiante.getPlata();
         int estudianteCapacidadEstudio = estudiante.getCapacidadDeestudio();
