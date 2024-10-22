@@ -1,4 +1,4 @@
-# University Life Idle Game
+# Universal Sorrow
 Welcome to the University Life Idle Game, where you step into the shoes of a university student navigating the challenges of academic life!
 
 ---
