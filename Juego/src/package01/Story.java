@@ -24,6 +24,15 @@ public class Story {
         materias.add(new Materia("Ventas y Negociación", 3, 0.75));
         materias.add(new Materia("Ética en el Marketing", 1, 0.95));
         ArrayList<Bono> bonos = new ArrayList<>();
+        ArrayList<Trabajo> trabajos = new ArrayList<>();
+        Trabajo asistenteMarketing = new Trabajo("Asistente de Marketing", 20, 15000.0);
+        Trabajo gestorRedesSociales = new Trabajo("Gestor de Redes Sociales", 15, 12000.0);
+        Trabajo analistaMercado = new Trabajo("Analista de Mercado", 25, 18000.0);
+        Trabajo creadorContenido = new Trabajo("Creador de Contenido", 10, 8000.0);
+        trabajos.add(asistenteMarketing);
+        trabajos.add(gestorRedesSociales);
+        trabajos.add(analistaMercado);
+        trabajos.add(creadorContenido);
         Carrera marketing = new Carrera("Marketing", materias, bonos);
         Estudiante estudiante = new Estudiante("juan", 100, 10000, 10, "jugador", marketing, materias);
         return estudiante;
@@ -37,6 +46,15 @@ public class Story {
         materias.add(new Materia("Danza y Movimiento", 1, 0.90));
         materias.add(new Materia("Dirección Teatral", 3, 0.65));
         ArrayList<Bono> bonos = new ArrayList<>();
+        ArrayList<Trabajo> trabajos = new ArrayList<>();
+        Trabajo actorTeatro = new Trabajo("Actor en Obras de Teatro", 20, 14000.0);
+        Trabajo profesorArte = new Trabajo("Profesor de Clases de Arte", 15, 10000.0);
+        Trabajo bailarinFreelance = new Trabajo("Bailarín Freelance", 10, 9000.0);
+        Trabajo artistaCallejero = new Trabajo("Artista Callejero", 25, 7000.0);
+        trabajos.add(actorTeatro);
+        trabajos.add(profesorArte);
+        trabajos.add(bailarinFreelance);
+        trabajos.add(artistaCallejero);
         Carrera artes = new Carrera("Artes", materias, bonos);
         Estudiante estudiante = new Estudiante("juan", 70, 1000, 20, "jugador", artes, materias);
         return estudiante;
@@ -50,6 +68,15 @@ public class Story {
         materias.add(new Materia("Programación I", 1, 0.90));
         materias.add(new Materia("Estadística", 1, 0.85));
         ArrayList<Bono> bonos = new ArrayList<>();
+        ArrayList<Trabajo> trabajos = new ArrayList<>();
+        Trabajo ingenieroSoftware = new Trabajo("Ingeniero de Software", 40, 60000.0);
+        Trabajo ingenieroCivil = new Trabajo("Ingeniero Civil Asistente", 30, 45000.0);
+        Trabajo ingenieroElectronico = new Trabajo("Ingeniero Electrónico", 35, 55000.0);
+        Trabajo consultorProyectos = new Trabajo("Consultor de Proyectos", 25, 50000.0);
+        trabajos.add(ingenieroSoftware);
+        trabajos.add(ingenieroCivil);
+        trabajos.add(ingenieroElectronico);
+        trabajos.add(consultorProyectos);
         Carrera ingenieria = new Carrera("Ingenieria", materias, bonos);
         Estudiante estudiante = new Estudiante("juan", 30, 5000, 100, "jugador", ingenieria, materias);
         return estudiante;
@@ -75,7 +102,7 @@ public class Story {
     }
 
     public void setEstudiante(Estudiante estudiante) {
-        this.estudianteActual = estudiante; // Método para establecer el estudiante
+        this.estudianteActual = estudiante; //Método para establecer el estudiante
     }
 
     public void defaultSetup(Estudiante estudiante){
@@ -89,7 +116,7 @@ public class Story {
             case "Study": study(); break;
             case "Sleep": sleep(); break;
             case "Go out": goOut(); break;
-            case "Play videogames": playVideoGames(); break;
+            case "Work": work(); break;
             case ">": beggining(); ui.choice5.setVisible(false); break;
             case "1": estudio("1"); break;
             case "2": estudio("2"); break;
@@ -103,12 +130,12 @@ public class Story {
         ui.choice1.setText("Study");
         ui.choice2.setText("Sleep");
         ui.choice3.setText("Go out");
-        ui.choice4.setText("Play videogames");
+        ui.choice4.setText("Work");
 
         main.nextPosition1 = "Study";
         main.nextPosition2 = "Sleep";
         main.nextPosition3 = "Go out";
-        main.nextPosition4 = "Play videogames";
+        main.nextPosition4 = "Work";
     }
 
     public void study(){
@@ -143,10 +170,11 @@ public class Story {
     }
     public void goOut(){
         ui.mainTextArea.setText("You decide to go out with friends and enjoy the day. \nYour chances of passing decrease. \nYou lose money");
-        ui.choice1.setText("");
-        ui.choice2.setText("");
-        ui.choice3.setText("");
-        ui.choice4.setText("");
+        List<Materia> materias  = estudianteActual.getMaterias();
+        ui.choice1.setText("" + materias.getFirst().getNombre());
+        ui.choice2.setText("" + materias.get(1).getNombre());
+        ui.choice3.setText("" + materias.get(2).getNombre());
+        ui.choice4.setText("" + materias.getLast().getNombre());
         ui.choice5.setVisible(true);
 
         main.nextPosition1 = "";
@@ -155,13 +183,16 @@ public class Story {
         main.nextPosition4 = "";
         main.nextPosition5 = ">";
     }
-    public void playVideoGames(){
-        ui.mainTextArea.setText("You decide to play videogames. \nYour chances of passing decrease and you feel guilty");
-        ui.choice1.setText("");
-        ui.choice2.setText("");
-        ui.choice3.setText("");
-        ui.choice4.setText("");
+    public void work(){
+        ui.mainTextArea.setText("You decide to work. \nYour chances of passing decrease and you feel guilty. You earn money");
+        List<Materia> materias  = estudianteActual.getMaterias();
+        ui.choice1.setText("" + materias.getFirst().getNombre());
+        ui.choice2.setText("" + materias.get(1).getNombre());
+        ui.choice3.setText("" + materias.get(2).getNombre());
+        ui.choice4.setText("" + materias.getLast().getNombre());
         ui.choice5.setVisible(true);
+
+        //trabajo();
 
         main.nextPosition1 = "";
         main.nextPosition2 = "";
@@ -199,4 +230,9 @@ public class Story {
             break;
         }
     }
+
+    /*public void trabajo (){
+        ArrayList<Trabajo> trabajos = estudianteActual.getTrabajo();
+        estudianteActual.trabajar(trabajar);
+    }*/
 }
