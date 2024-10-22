@@ -4,10 +4,10 @@ public class Materia {
     private int dificultad; // 1. Facil, 2. Normal, 3. Dificil, 4. Muy dificil
     private double probabilidadDeAprobar;
 
-    public Materia(String nombre, int dificultad, double probabilidadDeAprobar) {
+    public Materia(String nombre, int dificultad) {
         this.nombre = nombre;
         this.dificultad = dificultad;
-        this.probabilidadDeAprobar = probabilidadDeAprobar;
+        this.probabilidadDeAprobar = 10.00d;
     }
 
     public String getNombre() {

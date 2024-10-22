@@ -1,21 +1,21 @@
 package Objetos;
 public class Bono {
-    private String estadistica;
+    private int tipo; //1. Estudio 2. Trabajo 3. Relaciones
     private double multiplicador;
     private int tiempo;
 
-    public Bono(String estadistica, double multiplicador, int tiempo) {
-        this.estadistica = estadistica;
+    public Bono(int tipo, double multiplicador, int tiempo) {
+        this.tipo = tipo;
         this.multiplicador = multiplicador;
         this.tiempo = tiempo;
     }
 
-    public String getEstadistica() {
-        return estadistica;
+    public int getTipo() {
+        return tipo;
     }
 
-    public void setEstadistica(String estadistica) {
-        this.estadistica = estadistica;
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
 
     public double getMultiplicador() {

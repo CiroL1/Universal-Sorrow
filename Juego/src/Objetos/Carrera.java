@@ -36,4 +36,13 @@ public class Carrera {
     public void setBonos(ArrayList<Bono> bonos) {
         this.bonos = bonos;
     }
+
+    public double aplicarBonos(int tipo){
+        for(Bono bono : bonos){
+            if(tipo == bono.getTipo()){
+                return bono.getMultiplicador();
+            }
+        }
+        return 0;
+    }
 }

@@ -80,26 +80,26 @@ public class Estudiante {
     //Metodos
     public void estudiar(Materia materia){
         switch(materia.getDificultad()){
-            case 1: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * 1.5);
+            case 1: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * (1.5 + carrera.aplicarBonos(1)));
                     modificarCordura(5);
                 break;
-            case 2: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * 1.0);
+            case 2: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * (1.0 + carrera.aplicarBonos(1)));
                 modificarCordura(10);
                 break;
-            case 3: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * 0.5);
+            case 3: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * (0.75 + carrera.aplicarBonos(1)));
                 modificarCordura(15);
                 break;
-            case 4: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * 0.25);
+            case 4: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * (0.5 + carrera.aplicarBonos(1)));
                     modificarCordura(20);
                     break;
-            default: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * 1.5);
+            default: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * (1.5 + carrera.aplicarBonos(1)));
                 modificarCordura(5);
                 break;
         }
     }
 
     public void trabajar(Trabajo trabajo){
-        setPlata(trabajo.getRemuneracion());
+        setPlata(trabajo.getRemuneracion() * carrera.aplicarBonos(2));
         modificarCordura(10);
     }
 
@@ -119,7 +119,6 @@ public class Estudiante {
         }else if (corduraActual < 25 && corduraActual >= 0) {
             corduraRestar = base * 1.75;
         }
-
         if((corduraActual - corduraRestar) >= 0){
             setPlata(corduraActual - corduraRestar);
             return 1;
