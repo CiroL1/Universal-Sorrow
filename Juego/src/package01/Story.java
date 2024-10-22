@@ -2,6 +2,7 @@ package package01;
 import Objetos.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Story {
     Main main;
@@ -18,27 +19,39 @@ public class Story {
     public Estudiante estudianteMarketing() {
         //easy
         ArrayList<Materia> materias = new ArrayList<>();
+        materias.add(new Materia("Marketing Digital", 2, 0.85));
+        materias.add(new Materia("Estrategias de Precios", 3, 0.65));
+        materias.add(new Materia("Ventas y Negociación", 3, 0.75));
+        materias.add(new Materia("Ética en el Marketing", 1, 0.95));
         ArrayList<Bono> bonos = new ArrayList<>();
         Carrera marketing = new Carrera("Marketing", materias, bonos);
-        Estudiante estudiante = new Estudiante("juan", 100, 10000, 100, "jugador", marketing, materias);
+        Estudiante estudiante = new Estudiante("juan", 100, 10000, 10, "jugador", marketing, materias);
         return estudiante;
     }
 
     public Estudiante estudianteArtes() {
         //medium
         ArrayList<Materia> materias = new ArrayList<>();
+        materias.add(new Materia("Actuación I", 2, 0.85));
+        materias.add(new Materia("Teatro Contemporáneo", 2, 0.75));
+        materias.add(new Materia("Danza y Movimiento", 1, 0.90));
+        materias.add(new Materia("Dirección Teatral", 3, 0.65));
         ArrayList<Bono> bonos = new ArrayList<>();
         Carrera artes = new Carrera("Artes", materias, bonos);
-        Estudiante estudiante = new Estudiante("juan", 100, 10000, 100, "jugador", artes, materias);
+        Estudiante estudiante = new Estudiante("juan", 70, 1000, 20, "jugador", artes, materias);
         return estudiante;
     }
 
     public Estudiante estudianteIngenieria() {
         //hard
         ArrayList<Materia> materias = new ArrayList<>();
+        materias.add(new Materia("Matemáticas I", 2, 0.85));
+        materias.add(new Materia("Física I", 3, 0.75));
+        materias.add(new Materia("Programación I", 1, 0.90));
+        materias.add(new Materia("Estadística", 1, 0.85));
         ArrayList<Bono> bonos = new ArrayList<>();
         Carrera ingenieria = new Carrera("Ingenieria", materias, bonos);
-        Estudiante estudiante = new Estudiante("juan", 100, 10000, 100, "jugador", ingenieria, materias);
+        Estudiante estudiante = new Estudiante("juan", 30, 5000, 100, "jugador", ingenieria, materias);
         return estudiante;
     }
 
@@ -66,21 +79,21 @@ public class Story {
     }
 
     public void defaultSetup(Estudiante estudiante){
-        double estudianteCordura = estudiante.getCordura();
-        double estudiantePlata = estudiante.getPlata();
-        int estudianteCapacidadEstudio = estudiante.getCapacidadDeestudio();
-        ui.sNumberLabel.setText("" + estudianteCordura);
-        ui.moneyNameLabel.setText("" + estudiantePlata);
-        ui.pcNameLabel.setText("" + estudianteCapacidadEstudio);
+        ui.sNumberLabel.setText("" + estudiante.getCordura());
+        ui.moneyNameLabel.setText("" + estudiante.getPlata());
+        ui.pcNameLabel.setText("" + estudiante.getCapacidadDeestudio());
     }
 
     public void selectPosition(String nextPosition){
         switch(nextPosition){
-            case "default": beggining(); break;
             case "Study": study(); break;
             case "Sleep": sleep(); break;
             case "Go out": goOut(); break;
             case "Play videogames": playVideoGames(); break;
+            case "1": estudio("1"); break;
+            case "2": estudio("2"); break;
+            case "3": estudio("3"); break;
+            case "4": estudio("4"); break;
         }
     }
 
@@ -98,29 +111,26 @@ public class Story {
     }
 
     public void study(){
-        ui.mainTextArea.setText("You decide to prepare yourself and study. \nYour chances of passing increase by 10%. \nYou feel proud about yourself (+10 sanity)");
-        //ui.pcNameLabel.setText("" + estudiante.probabilidadAprobar);
-        //ui.sNumberLabel.setText("" + estudiante.cordura);
-        ui.choice1.setText(">");
-        ui.choice2.setText("");
-        ui.choice3.setText("");
-        ui.choice4.setText("");
+        ui.mainTextArea.setText("You decide to prepare yourself and study. \nChoose which one to begin with");
+        List<Materia> materias  = estudianteActual.getMaterias();
+        ui.choice1.setText("" + materias.getFirst().getNombre());
+        ui.choice2.setText("" + materias.get(1).getNombre());
+        ui.choice3.setText("" + materias.get(2).getNombre());
+        ui.choice4.setText("" + materias.getLast().getNombre());
 
-        main.nextPosition1 = "default";
-        main.nextPosition2 = "";
-        main.nextPosition3 = "";
-        main.nextPosition4 = "";
+        main.nextPosition1 = "1";
+        main.nextPosition2 = "2";
+        main.nextPosition3 = "3";
+        main.nextPosition4 = "4";
     }
     public void sleep(){
         ui.mainTextArea.setText("You decide to sleep through the day. \nYour chances of passing decrease by 10% and you feel guilty (-15 of sanity)");
-       // ui.pcNameLabel.setText("" + estudiante.probabilidadAprobar);
-       // ui.sNumberLabel.setText("" + estudiante.cordura);
-        ui.choice1.setText(">");
+        ui.choice1.setText("");
         ui.choice2.setText("");
         ui.choice3.setText("");
         ui.choice4.setText("");
 
-        main.nextPosition1 = "default";
+        main.nextPosition1 = "";
         main.nextPosition2 = "";
         main.nextPosition3 = "";
         main.nextPosition4 = "";
@@ -128,19 +138,44 @@ public class Story {
     }
     public void goOut(){
         ui.mainTextArea.setText("You decide to go out with friends and enjoy the day. \nYour chances of passing decrease by 15%. (-$1500)");
-       // ui.moneyNameLabel.setText("" + estudiante.plata);
-       // ui.pcNameLabel.setText("" + estudiante.probabilidadAprobar);
-        ui.choice1.setText(">");
+        ui.choice1.setText("");
         ui.choice2.setText("");
         ui.choice3.setText("");
         ui.choice4.setText("");
 
-        main.nextPosition1 = "default";
+        main.nextPosition1 = "";
         main.nextPosition2 = "";
         main.nextPosition3 = "";
         main.nextPosition4 = "";
     }
     public void playVideoGames(){
 
+    }
+
+    public void estudio(String materia){
+        List<Materia> materias  = estudianteActual.getMaterias();
+        switch (materia){
+            case "1": ui.mainTextArea.setText("You study " + materias.getFirst().getNombre() + ".\nYou gain");
+                estudianteActual.estudiar(materias.getFirst());
+                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
+                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
+                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+            break;
+            case "2": ui.mainTextArea.setText("You study " + materias.get(1).getNombre() + ".\nYou gain"); estudianteActual.estudiar(materias.get(1));
+                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
+                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
+                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+            break;
+            case "3": ui.mainTextArea.setText("You study " + materias.get(2).getNombre() + ".\nYou gain"); estudianteActual.estudiar(materias.get(2));
+                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
+                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
+                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+            break;
+            case "4": ui.mainTextArea.setText("You study " + materias.getLast().getNombre() + ".\nYou gain"); estudianteActual.estudiar(materias.getLast());
+                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
+                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
+                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+            break;
+        }
     }
 }

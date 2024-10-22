@@ -162,7 +162,7 @@ public class UI {
         choiceButtonPanel.add(choice4);
 
         playerPanel = new JPanel();
-        playerPanel.setBounds(100, 15, 600, 50);
+        playerPanel.setBounds(90, 15, 650, 50);
         playerPanel.setBackground(Color.black);
         playerPanel.setLayout(new GridLayout(1, 6));
         window.add(playerPanel);
@@ -190,7 +190,7 @@ public class UI {
         playerPanel.add(moneyNameLabel);
 
         //Chances of passing
-        passChanceLabel = new JLabel("Passing: ");
+        passChanceLabel = new JLabel("Studying: ");
         passChanceLabel.setForeground(Color.white);
         passChanceLabel.setFont(normalFont);
         playerPanel.add(passChanceLabel);
