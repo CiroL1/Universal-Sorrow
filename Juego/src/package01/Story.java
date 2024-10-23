@@ -322,7 +322,7 @@ public class Story {
     }
 
     public void Dormir(){
-        ui.mainTextArea.setText("You sleep " + "\nYou gain ");
+        ui.mainTextArea.setText("You go to sleep " + "\nYou regain sanity");
         estudianteActual.descansar();
         ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
         ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
