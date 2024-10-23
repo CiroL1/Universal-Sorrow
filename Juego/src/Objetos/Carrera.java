@@ -3,9 +3,9 @@ package Objetos;
 import java.util.ArrayList;
 
 public class Carrera {
-    private String nombre;
-    private ArrayList<Materia> materias;
-    private ArrayList<Bono> bonos;
+    public String nombre;
+    public ArrayList<Materia> materias;
+    public ArrayList<Bono> bonos;
 
     public Carrera(String nombre, ArrayList<Materia> materias, ArrayList<Bono> bonos) {
         this.nombre = nombre;

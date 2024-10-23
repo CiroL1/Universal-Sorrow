@@ -8,8 +8,8 @@ public class Story {
     Main main;
     UI ui;
     VisibilityManager vm;
-    private Estudiante estudianteActual;
-    private ArrayList<Trabajo> trabajosActual;
+    public Estudiante estudianteActual;
+    public ArrayList<Trabajo> trabajosActual;
 
     public Story(Main main, UI ui, VisibilityManager vm) {
         this.main = main;
@@ -25,11 +25,14 @@ public class Story {
         materias.add(new Materia("Ventas y Negociación", 3, 0.75));
         materias.add(new Materia("Ética en el Marketing", 1, 0.95));
         ArrayList<Bono> bonos = new ArrayList<>();
+        bonos.add(new Bono(1, 0.2d, 9999));
+        bonos.add(new Bono(2, 1.0d, 9999));
+        bonos.add(new Bono(3, 1.0d, 9999));
         ArrayList<Trabajo> trabajos = new ArrayList<>();
-        Trabajo asistenteMarketing = new Trabajo("Asistente de Marketing", 20, 15000.0);
-        Trabajo gestorRedesSociales = new Trabajo("Gestor de Redes Sociales", 15, 12000.0);
-        Trabajo analistaMercado = new Trabajo("Analista de Mercado", 25, 18000.0);
-        Trabajo creadorContenido = new Trabajo("Creador de Contenido", 10, 8000.0);
+        Trabajo asistenteMarketing = new Trabajo("Asistente de Marketing", 20, 1500.0);
+        Trabajo gestorRedesSociales = new Trabajo("Gestor de Redes Sociales", 15, 1200.0);
+        Trabajo analistaMercado = new Trabajo("Analista de Mercado", 25, 1800.0);
+        Trabajo creadorContenido = new Trabajo("Creador de Contenido", 10, 800.0);
         trabajos.add(asistenteMarketing);
         trabajos.add(gestorRedesSociales);
         trabajos.add(analistaMercado);
@@ -48,17 +51,20 @@ public class Story {
         materias.add(new Materia("Danza y Movimiento", 1, 0.90));
         materias.add(new Materia("Dirección Teatral", 3, 0.65));
         ArrayList<Bono> bonos = new ArrayList<>();
+        bonos.add(new Bono(1, 0.2d, 9999));
+        bonos.add(new Bono(2, 1.0d, 9999));
+        bonos.add(new Bono(3, 1.0d, 9999));
         ArrayList<Trabajo> trabajos = new ArrayList<>();
-        Trabajo actorTeatro = new Trabajo("Actor en Obras de Teatro", 20, 14000.0);
-        Trabajo profesorArte = new Trabajo("Profesor de Clases de Arte", 15, 10000.0);
-        Trabajo bailarinFreelance = new Trabajo("Bailarín Freelance", 10, 9000.0);
-        Trabajo artistaCallejero = new Trabajo("Artista Callejero", 25, 7000.0);
+        Trabajo actorTeatro = new Trabajo("Actor en Obras de Teatro", 20, 1.4);
+        Trabajo profesorArte = new Trabajo("Profesor de Clases de Arte", 15, 1.0);
+        Trabajo bailarinFreelance = new Trabajo("Bailarín Freelance", 10, 9.0);
+        Trabajo artistaCallejero = new Trabajo("Artista Callejero", 25, 7.0);
         trabajos.add(actorTeatro);
         trabajos.add(profesorArte);
         trabajos.add(bailarinFreelance);
         trabajos.add(artistaCallejero);
         Carrera artes = new Carrera("Artes", materias, bonos);
-        Estudiante estudiante = new Estudiante("juan", 70, 1000, 20, "jugador", artes, materias);
+        Estudiante estudiante = new Estudiante("juan", 100, 1000, 10, "jugador", artes, materias);
         setTrabajos(trabajos);
         return estudiante;
     }
@@ -71,17 +77,20 @@ public class Story {
         materias.add(new Materia("Programación I", 1, 0.90));
         materias.add(new Materia("Estadística", 1, 0.85));
         ArrayList<Bono> bonos = new ArrayList<>();
+        bonos.add(new Bono(1, 0.2d, 9999));
+        bonos.add(new Bono(2, 1.0d, 9999));
+        bonos.add(new Bono(3, 1.0d, 9999));
         ArrayList<Trabajo> trabajos = new ArrayList<>();
-        Trabajo ingenieroSoftware = new Trabajo("Ingeniero de Software", 40, 60000.0);
-        Trabajo ingenieroCivil = new Trabajo("Ingeniero Civil Asistente", 30, 45000.0);
-        Trabajo ingenieroElectronico = new Trabajo("Ingeniero Electrónico", 35, 55000.0);
-        Trabajo consultorProyectos = new Trabajo("Consultor de Proyectos", 25, 50000.0);
+        Trabajo ingenieroSoftware = new Trabajo("Ingeniero de Software", 40, 6.0);
+        Trabajo ingenieroCivil = new Trabajo("Ingeniero Civil Asistente", 30, 4.5);
+        Trabajo ingenieroElectronico = new Trabajo("Ingeniero Electrónico", 35, 5.5);
+        Trabajo consultorProyectos = new Trabajo("Consultor de Proyectos", 25, 5.0);
         trabajos.add(ingenieroSoftware);
         trabajos.add(ingenieroCivil);
         trabajos.add(ingenieroElectronico);
         trabajos.add(consultorProyectos);
         Carrera ingenieria = new Carrera("Ingenieria", materias, bonos);
-        Estudiante estudiante = new Estudiante("juan", 30, 5000, 100, "jugador", ingenieria, materias);
+        Estudiante estudiante = new Estudiante("juan", 100, 5000, 10, "jugador", ingenieria, materias);
         setTrabajos(trabajos);
         return estudiante;
     }
@@ -114,9 +123,9 @@ public class Story {
     }
 
     public void defaultSetup(Estudiante estudiante){
-        ui.sNumberLabel.setText("" + estudiante.getCordura());
-        ui.moneyNameLabel.setText("" + estudiante.getPlata());
-        ui.pcNameLabel.setText("" + estudiante.getCapacidadDeestudio());
+        ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
+        ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+        ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
     }
 
     public void selectPosition(String nextPosition){
@@ -173,6 +182,8 @@ public class Story {
         ui.choice4.setText("");
         ui.choice5.setVisible(true);
 
+        Dormir();
+
         main.nextPosition1 = "5";
         main.nextPosition2 = "6";
         main.nextPosition3 = "7";
@@ -218,29 +229,29 @@ public class Story {
     public void estudio(String materia){
         List<Materia> materias  = estudianteActual.getMaterias();
         switch (materia){
-            case "1": ui.mainTextArea.setText("You study " + materias.getFirst().getNombre() + ".\nYou gain ");
+            case "1": ui.mainTextArea.setText("You study " + materias.getFirst().getNombre() + ".\nPassing chances " + materias.getFirst().getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.getFirst());
-                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
-                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
-                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
+                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
             break;
-            case "2": ui.mainTextArea.setText("You study " + materias.get(1).getNombre() + ".\nYou gain");
+            case "2": ui.mainTextArea.setText("You study " + materias.get(1).getNombre() + ".\nPassing chances " + materias.get(1).getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.get(1));
-                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
-                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
-                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
+                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
             break;
-            case "3": ui.mainTextArea.setText("You study " + materias.get(2).getNombre() + ".\nYou gain");
+            case "3": ui.mainTextArea.setText("You study " + materias.get(2).getNombre() + ".\nPassing chances " + materias.get(2).getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.get(2));
-                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
-                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
-                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
+                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
             break;
-            case "4": ui.mainTextArea.setText("You study " + materias.getLast().getNombre() + ".\nYou gain");
+            case "4": ui.mainTextArea.setText("You study " + materias.getLast().getNombre() + ".\nPassing chances " + materias.getLast().getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.getLast());
-                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
-                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
-                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
+                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
             break;
         }
     }
@@ -249,29 +260,37 @@ public class Story {
         switch (trabajo){
             case "13": ui.mainTextArea.setText("You work " + trabajosActual.getFirst().getNombre() + ".\nYou gain ");
                 estudianteActual.trabajar(trabajosActual.getFirst());
-                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
-                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
-                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
+                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
                 break;
             case "14": ui.mainTextArea.setText("You work " + trabajosActual.get(1).getNombre() + ".\nYou gain");
                 estudianteActual.trabajar(trabajosActual.get(1));
-                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
-                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
-                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
+                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
                 break;
             case "15": ui.mainTextArea.setText("You work " + trabajosActual.get(2).getNombre() + ".\nYou gain");
                 estudianteActual.trabajar(trabajosActual.get(2));
-                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
-                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
-                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
+                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
                 break;
             case "16": ui.mainTextArea.setText("You work " + trabajosActual.getLast().getNombre() + ".\nYou gain");
                 estudianteActual.trabajar(trabajosActual.getLast());
-                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
-                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
-                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
+                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
                 break;
 
         }
+    }
+
+    public void Dormir(){
+        ui.mainTextArea.setText("You sleep " + "\nYou gain ");
+        estudianteActual.descansar();
+        ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
+        ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+        ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
     }
 }

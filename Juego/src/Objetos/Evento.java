@@ -3,10 +3,10 @@ package Objetos;
 import java.util.ArrayList;
 
 public class Evento {
-    private int tipo; //1. Clase, 2. Trabajo, 3. Relacion
-    private String descripcion;
-    private ArrayList<Integer> opciones;
-    private Bono outcome;
+    public int tipo; //1. Clase, 2. Trabajo, 3. Relacion
+    public String descripcion;
+    public ArrayList<Integer> opciones;
+    public Bono outcome;
 
     public Evento(int tipo, String descripcion, ArrayList<Integer> opciones, Bono outcome) {
         this.tipo = tipo;

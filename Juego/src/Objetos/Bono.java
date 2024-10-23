@@ -1,8 +1,8 @@
 package Objetos;
 public class Bono {
-    private int tipo; //1. Estudio 2. Trabajo 3. Relaciones
-    private double multiplicador;
-    private int tiempo;
+    public int tipo; //1. Estudio 2. Trabajo 3. Relaciones
+    public double multiplicador;
+    public int tiempo;
 
     public Bono(int tipo, double multiplicador, int tiempo) {
         this.tipo = tipo;

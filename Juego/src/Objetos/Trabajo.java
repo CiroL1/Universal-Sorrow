@@ -1,9 +1,9 @@
 package Objetos;
 
 public class Trabajo {
-    private String nombre;
-    private int tiempo;
-    private double remuneracion;
+    public String nombre;
+    public int tiempo;
+    public double remuneracion;
 
     public Trabajo(String nombre, int tiempo, double remuneracion) {
         this.nombre = nombre;

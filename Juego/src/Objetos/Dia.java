@@ -1,8 +1,8 @@
 package Objetos;
 
 public class Dia {
-    private String dia;
-    private int tiempo;
+    public String dia;
+    public int tiempo;
     Evento evento;
 
     public Dia(String dia, int tiempo, Evento evento) {
