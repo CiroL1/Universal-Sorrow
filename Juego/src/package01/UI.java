@@ -98,17 +98,16 @@ public class UI {
         difHard.setActionCommand("hard");
         difficultyPanel.add(difHard);
 
-
         //Game screen
         mainTextPanel = new JPanel();
-        mainTextPanel.setBounds(100, 100, 600, 250);
+        mainTextPanel.setBounds(100, 100, 600, 200);
         mainTextPanel.setBackground(Color.black);
         mainTextPanel.setVisible(false);
+        mainTextPanel.setLayout(new BoxLayout(mainTextPanel, BoxLayout.Y_AXIS)); // Usa BoxLayout
         window.add(mainTextPanel);
 
         //Days text area
         daysTextArea = new JTextArea("This is the day text area");
-        daysTextArea.setBounds(100, 50, 200, 50);
         daysTextArea.setBackground(Color.black);
         daysTextArea.setForeground(Color.white);
         daysTextArea.setFont(normalFont);
@@ -119,7 +118,6 @@ public class UI {
 
         //Text Area
         mainTextArea = new JTextArea("This is the main text area");
-        mainTextArea.setBounds(100, 100, 600, 250);
         mainTextArea.setBackground(Color.black);
         mainTextArea.setForeground(Color.white);
         mainTextArea.setFont(normalFont);
