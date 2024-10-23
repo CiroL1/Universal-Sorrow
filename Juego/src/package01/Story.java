@@ -10,6 +10,17 @@ public class Story {
     VisibilityManager vm;
     public Estudiante estudianteActual;
     public ArrayList<Trabajo> trabajosActual;
+    Dia dia = new Dia("Lunes", 4, null);
+    Dia lunes = new Dia("Lunes", 4, null);
+    Dia martes = new Dia("Martes", 4, null);
+    Dia miercoles = new Dia("Miércoles", 4, null);
+    Dia jueves = new Dia("Jueves", 4, null);
+    Dia viernes = new Dia("Viernes", 4, null);
+    Dia sabado = new Dia("Sábado", 5, null);
+    Dia domingo = new Dia("Domingo", 5, null);
+    ArrayList<Dia> dias = new ArrayList<>();
+
+
 
     public Story(Main main, UI ui, VisibilityManager vm) {
         this.main = main;
@@ -125,15 +136,22 @@ public class Story {
     public void defaultSetup(Estudiante estudiante){
         ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
         ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-        ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
+        //ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
+        dias.add(lunes);
+        dias.add(martes);
+        dias.add(miercoles);
+        dias.add(jueves);
+        dias.add(viernes);
+        dias.add(sabado);
+        dias.add(domingo);
     }
 
     public void selectPosition(String nextPosition){
         switch(nextPosition){
-            case "Study": study(); break;
-            case "Sleep": sleep(); break;
-            case "Go out": goOut(); break;
-            case "Work": work(); break;
+            case "Study": study(); dia.setTiempo(dia.getTiempo() - 1); break;
+            case "Sleep": sleep(); dia.setTiempo(dia.getTiempo() - 4); break;
+            case "Go out": goOut(); dia.setTiempo(dia.getTiempo() - 2); break;
+            case "Work": work(); dia.setTiempo(dia.getTiempo() - 3); break;
             case ">": beggining(); ui.choice5.setVisible(false); break;
             case "1": estudio("1"); break;
             case "2": estudio("2"); break;
@@ -144,19 +162,32 @@ public class Story {
             case "15": Trabajar("15"); break;
             case "16": Trabajar("16"); break;
         }
+        actualizarDia(dia);
     }
 
-    public void beggining(){
+    public void beggining() {
+        ui.daysTextArea.setText("Day: " + dia.getDia() + "\nHora: " + dia.getTiempo());
         ui.mainTextArea.setText("The final exams are coming \nWhat are you going to do?");
         ui.choice1.setText("Study");
         ui.choice2.setText("Sleep");
         ui.choice3.setText("Go out");
         ui.choice4.setText("Work");
 
+        // Configura las posiciones de las decisiones
         main.nextPosition1 = "Study";
         main.nextPosition2 = "Sleep";
         main.nextPosition3 = "Go out";
         main.nextPosition4 = "Work";
+
+        int i = 1;
+        if (dia.getTiempo() <= 0){
+            dia = dias.get(i);
+            i += 1;
+        }
+    }
+
+    public void actualizarDia(Dia dia) {
+        ui.daysTextArea.setText("Day: " + dia.getDia() + "\nHora: " + dia.getTiempo());
     }
 
     public void study(){
@@ -233,25 +264,25 @@ public class Story {
                 estudianteActual.estudiar(materias.getFirst());
                 ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
                 ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
+                //ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()*100.0)/100.0);
             break;
             case "2": ui.mainTextArea.setText("You study " + materias.get(1).getNombre() + ".\nPassing chances " + materias.get(1).getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.get(1));
                 ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
                 ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
+                //ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
             break;
             case "3": ui.mainTextArea.setText("You study " + materias.get(2).getNombre() + ".\nPassing chances " + materias.get(2).getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.get(2));
                 ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
                 ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
+                //ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
             break;
             case "4": ui.mainTextArea.setText("You study " + materias.getLast().getNombre() + ".\nPassing chances " + materias.getLast().getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.getLast());
                 ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
                 ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
+                //ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
             break;
         }
     }
@@ -262,25 +293,25 @@ public class Story {
                 estudianteActual.trabajar(trabajosActual.getFirst());
                 ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
                 ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
+                // ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
                 break;
             case "14": ui.mainTextArea.setText("You work " + trabajosActual.get(1).getNombre() + ".\nYou gain");
                 estudianteActual.trabajar(trabajosActual.get(1));
                 ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
                 ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
+                // ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
                 break;
             case "15": ui.mainTextArea.setText("You work " + trabajosActual.get(2).getNombre() + ".\nYou gain");
                 estudianteActual.trabajar(trabajosActual.get(2));
                 ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
                 ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
+                // ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
                 break;
             case "16": ui.mainTextArea.setText("You work " + trabajosActual.getLast().getNombre() + ".\nYou gain");
                 estudianteActual.trabajar(trabajosActual.getLast());
                 ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
                 ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-                ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
+                // ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
                 break;
 
         }
@@ -291,6 +322,6 @@ public class Story {
         estudianteActual.descansar();
         ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
         ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-        ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
+        //ui.pcNameLabel.setText("" + Math.round(estudianteActual.getCapacidadDeestudio()));
     }
 }

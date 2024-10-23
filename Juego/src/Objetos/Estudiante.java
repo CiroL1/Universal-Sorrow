@@ -102,7 +102,6 @@ public class Estudiante {
     public void trabajar(Trabajo trabajo) {
         double remuneracionConBono = trabajo.getRemuneracion() * carrera.aplicarBonos(2);
         double nuevaPlata = getPlata() + remuneracionConBono;
-
         setPlata(nuevaPlata);
         modificarCordura(10);
     }

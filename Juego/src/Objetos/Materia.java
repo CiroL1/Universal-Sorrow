@@ -31,6 +31,10 @@ public class Materia {
     }
 
     public void setProbabilidadDeAprobar(double probabilidadDeAprobar) {
-        this.probabilidadDeAprobar = probabilidadDeAprobar;
+        if (this.probabilidadDeAprobar <= 99){
+            this.probabilidadDeAprobar = probabilidadDeAprobar;
+        } else {
+            this.probabilidadDeAprobar = 100;
+        }
     }
 }

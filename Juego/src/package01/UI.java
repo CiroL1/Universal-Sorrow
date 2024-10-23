@@ -8,7 +8,7 @@ public class UI {
     JPanel titleNamePanel, startButtonPanel,quitButtonPanel, difficultyPanel, mainTextPanel, choiceButtonPanel, playerPanel;
     JLabel titleNameLabel, sanityLabel, sNumberLabel, moneyLabel, moneyNameLabel, passChanceLabel, pcNameLabel;
     JButton startButton, quitButton, difEasy, difMedium, difHard, choice1, choice2, choice3, choice4, choice5;
-    JTextArea mainTextArea;
+    JTextArea mainTextArea, daysTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 26);
 
@@ -106,6 +106,17 @@ public class UI {
         mainTextPanel.setVisible(false);
         window.add(mainTextPanel);
 
+        //Days text area
+        daysTextArea = new JTextArea("This is the day text area");
+        daysTextArea.setBounds(100, 50, 200, 50);
+        daysTextArea.setBackground(Color.black);
+        daysTextArea.setForeground(Color.white);
+        daysTextArea.setFont(normalFont);
+        daysTextArea.setLineWrap(true);
+        daysTextArea.setWrapStyleWord(true);
+        daysTextArea.setEditable(false);
+        mainTextPanel.add(daysTextArea);
+
         //Text Area
         mainTextArea = new JTextArea("This is the main text area");
         mainTextArea.setBounds(100, 100, 600, 250);
@@ -174,7 +185,7 @@ public class UI {
         playerPanel = new JPanel();
         playerPanel.setBounds(90, 15, 650, 50);
         playerPanel.setBackground(Color.black);
-        playerPanel.setLayout(new GridLayout(1, 6));
+        playerPanel.setLayout(new GridLayout(1, 4));
         window.add(playerPanel);
 
         //Sanity
@@ -198,17 +209,6 @@ public class UI {
         moneyNameLabel.setForeground(Color.white);
         moneyNameLabel.setFont(normalFont);
         playerPanel.add(moneyNameLabel);
-
-        //Chances of passing
-        passChanceLabel = new JLabel("Studying: ");
-        passChanceLabel.setForeground(Color.white);
-        passChanceLabel.setFont(normalFont);
-        playerPanel.add(passChanceLabel);
-
-        pcNameLabel = new JLabel();
-        pcNameLabel.setForeground(Color.white);
-        pcNameLabel.setFont(normalFont);
-        playerPanel.add(pcNameLabel);
 
         playerPanel.setVisible(false);
 

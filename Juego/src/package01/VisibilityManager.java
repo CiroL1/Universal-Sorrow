@@ -15,6 +15,7 @@ public class VisibilityManager {
         //hide difficulty screen
         ui.difficultyPanel.setVisible(false);
         //hide game screen
+        ui.daysTextArea.setVisible(false);
         ui.mainTextPanel.setVisible(false);
         ui.choiceButtonPanel.setVisible(false);
         ui.playerPanel.setVisible(false);
@@ -28,6 +29,7 @@ public class VisibilityManager {
         //show difficulty screen
         ui.difficultyPanel.setVisible(true);
         //hide game screen
+        ui.daysTextArea.setVisible(false);
         ui.mainTextPanel.setVisible(false);
         ui.choiceButtonPanel.setVisible(false);
         ui.playerPanel.setVisible(false);
@@ -41,6 +43,7 @@ public class VisibilityManager {
         //hide difficulty screen
         ui.difficultyPanel.setVisible(false);
         //show game screen
+        ui.daysTextArea.setVisible(true);
         ui.mainTextPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(true);
         ui.playerPanel.setVisible(true);
