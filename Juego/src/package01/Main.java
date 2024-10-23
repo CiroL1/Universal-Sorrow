@@ -20,7 +20,6 @@ public class Main {
     public Main() {
         ui.createUI(cHandler);
         vm.showTitleScreen();
-        //story.defaultSetup();
     }
 
     public class ChoiceHandler implements ActionListener {

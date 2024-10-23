@@ -9,6 +9,7 @@ public class Story {
     UI ui;
     VisibilityManager vm;
     private Estudiante estudianteActual;
+    private ArrayList<Trabajo> trabajosActual;
 
     public Story(Main main, UI ui, VisibilityManager vm) {
         this.main = main;
@@ -35,6 +36,7 @@ public class Story {
         trabajos.add(creadorContenido);
         Carrera marketing = new Carrera("Marketing", materias, bonos);
         Estudiante estudiante = new Estudiante("juan", 100, 10000, 10, "jugador", marketing, materias);
+        setTrabajos(trabajos);
         return estudiante;
     }
 
@@ -57,6 +59,7 @@ public class Story {
         trabajos.add(artistaCallejero);
         Carrera artes = new Carrera("Artes", materias, bonos);
         Estudiante estudiante = new Estudiante("juan", 70, 1000, 20, "jugador", artes, materias);
+        setTrabajos(trabajos);
         return estudiante;
     }
 
@@ -79,6 +82,7 @@ public class Story {
         trabajos.add(consultorProyectos);
         Carrera ingenieria = new Carrera("Ingenieria", materias, bonos);
         Estudiante estudiante = new Estudiante("juan", 30, 5000, 100, "jugador", ingenieria, materias);
+        setTrabajos(trabajos);
         return estudiante;
     }
 
@@ -99,6 +103,10 @@ public class Story {
         setEstudiante(estudiante);
         defaultSetup(estudiante);
         return estudiante;
+    }
+
+    public void setTrabajos(ArrayList<Trabajo> trabajos){
+        this.trabajosActual = trabajos;
     }
 
     public void setEstudiante(Estudiante estudiante) {
@@ -122,6 +130,10 @@ public class Story {
             case "2": estudio("2"); break;
             case "3": estudio("3"); break;
             case "4": estudio("4"); break;
+            case "13": Trabajar("13"); break;
+            case "14": Trabajar("14"); break;
+            case "15": Trabajar("15"); break;
+            case "16": Trabajar("16"); break;
         }
     }
 
@@ -161,43 +173,45 @@ public class Story {
         ui.choice4.setText("");
         ui.choice5.setVisible(true);
 
-        main.nextPosition1 = "";
-        main.nextPosition2 = "";
-        main.nextPosition3 = "";
-        main.nextPosition4 = "";
+        main.nextPosition1 = "5";
+        main.nextPosition2 = "6";
+        main.nextPosition3 = "7";
+        main.nextPosition4 = "8";
         main.nextPosition5 = ">";
 
     }
     public void goOut(){
         ui.mainTextArea.setText("You decide to go out with friends and enjoy the day. \nYour chances of passing decrease. \nYou lose money");
-        List<Materia> materias  = estudianteActual.getMaterias();
+        /*List<Materia> materias  = estudianteActual.getMaterias();
         ui.choice1.setText("" + materias.getFirst().getNombre());
         ui.choice2.setText("" + materias.get(1).getNombre());
         ui.choice3.setText("" + materias.get(2).getNombre());
-        ui.choice4.setText("" + materias.getLast().getNombre());
+        ui.choice4.setText("" + materias.getLast().getNombre());*/
+        ui.choice1.setText("");
+        ui.choice2.setText("");
+        ui.choice3.setText("");
+        ui.choice4.setText("");
         ui.choice5.setVisible(true);
 
-        main.nextPosition1 = "";
-        main.nextPosition2 = "";
-        main.nextPosition3 = "";
-        main.nextPosition4 = "";
+        main.nextPosition1 = "9";
+        main.nextPosition2 = "10";
+        main.nextPosition3 = "11";
+        main.nextPosition4 = "12";
         main.nextPosition5 = ">";
     }
+
     public void work(){
         ui.mainTextArea.setText("You decide to work. \nYour chances of passing decrease and you feel guilty. You earn money");
-        List<Materia> materias  = estudianteActual.getMaterias();
-        ui.choice1.setText("" + materias.getFirst().getNombre());
-        ui.choice2.setText("" + materias.get(1).getNombre());
-        ui.choice3.setText("" + materias.get(2).getNombre());
-        ui.choice4.setText("" + materias.getLast().getNombre());
+        ui.choice1.setText("" + trabajosActual.getFirst().getNombre());
+        ui.choice2.setText("" + trabajosActual.get(1).getNombre());
+        ui.choice3.setText("" + trabajosActual.get(2).getNombre());
+        ui.choice4.setText("" + trabajosActual.getLast().getNombre());
         ui.choice5.setVisible(true);
 
-        //trabajo();
-
-        main.nextPosition1 = "";
-        main.nextPosition2 = "";
-        main.nextPosition3 = "";
-        main.nextPosition4 = "";
+        main.nextPosition1 = "13";
+        main.nextPosition2 = "14";
+        main.nextPosition3 = "15";
+        main.nextPosition4 = "16";
         main.nextPosition5 = ">";
     }
 
@@ -231,8 +245,33 @@ public class Story {
         }
     }
 
-    /*public void trabajo (){
-        ArrayList<Trabajo> trabajos = estudianteActual.getTrabajo();
-        estudianteActual.trabajar(trabajar);
-    }*/
+    public void Trabajar (String trabajo){
+        switch (trabajo){
+            case "13": ui.mainTextArea.setText("You work " + trabajosActual.getFirst().getNombre() + ".\nYou gain ");
+                estudianteActual.trabajar(trabajosActual.getFirst());
+                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
+                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
+                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+                break;
+            case "14": ui.mainTextArea.setText("You work " + trabajosActual.get(1).getNombre() + ".\nYou gain");
+                estudianteActual.trabajar(trabajosActual.get(1));
+                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
+                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
+                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+                break;
+            case "15": ui.mainTextArea.setText("You work " + trabajosActual.get(2).getNombre() + ".\nYou gain");
+                estudianteActual.trabajar(trabajosActual.get(2));
+                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
+                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
+                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+                break;
+            case "16": ui.mainTextArea.setText("You work " + trabajosActual.getLast().getNombre() + ".\nYou gain");
+                estudianteActual.trabajar(trabajosActual.getLast());
+                ui.sNumberLabel.setText("" + estudianteActual.getCordura());
+                ui.moneyNameLabel.setText("" + estudianteActual.getPlata());
+                ui.pcNameLabel.setText("" + estudianteActual.getCapacidadDeestudio());
+                break;
+
+        }
+    }
 }

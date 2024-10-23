@@ -23,7 +23,7 @@ public class UI {
 
         //title screen
         titleNamePanel = new JPanel();
-        titleNamePanel.setBounds(80,100,650,500);
+        titleNamePanel.setBounds(75,100,650,500);
         titleNamePanel.setBackground(Color.black);
         titleNameLabel = new JLabel("Universal Sorrow");
         titleNameLabel.setForeground(Color.white);
