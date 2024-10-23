@@ -79,41 +79,29 @@ public class Estudiante {
 
     //Metodos
     public void estudiar(Materia materia){
+        double actual = materia.getProbabilidadDeAprobar();
         switch(materia.getDificultad()){
-            case 1: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * (1.5 + carrera.aplicarBonos(1)));
+            case 1: materia.setProbabilidadDeAprobar(actual + (getCapacidadDeestudio() * (1.5 + carrera.aplicarBonos(1))));
                 modificarCordura(5);
                 break;
-            case 2: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * (1.0 + carrera.aplicarBonos(1)));
+            case 2: materia.setProbabilidadDeAprobar(actual + (getCapacidadDeestudio() * (1.0 + carrera.aplicarBonos(1))));
                 modificarCordura(10);
                 break;
-            case 3: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * (0.75 + carrera.aplicarBonos(1)));
+            case 3: materia.setProbabilidadDeAprobar(actual + (getCapacidadDeestudio() * (0.75 + carrera.aplicarBonos(1))));
                 modificarCordura(15);
                 break;
-            case 4: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * (0.5 + carrera.aplicarBonos(1)));
+            case 4: materia.setProbabilidadDeAprobar(actual + (getCapacidadDeestudio() * (0.5 + carrera.aplicarBonos(1))));
                 modificarCordura(20);
                 break;
-            default: materia.setProbabilidadDeAprobar(getCapacidadDeestudio() * (1.5 + carrera.aplicarBonos(1)));
+            default: materia.setProbabilidadDeAprobar(actual + (getCapacidadDeestudio() * (1.0 + carrera.aplicarBonos(1))));
                 modificarCordura(5);
                 break;
         }
     }
 
-    /*public void trabajar(Trabajo trabajo){
-        double actual = getPlata();
-        setPlata(actual + (trabajo.getRemuneracion() * carrera.aplicarBonos(2)));
-        modificarCordura(10);
-    }*/
-
     public void trabajar(Trabajo trabajo) {
         double remuneracionConBono = trabajo.getRemuneracion() * carrera.aplicarBonos(2);
         double nuevaPlata = getPlata() + remuneracionConBono;
-
-        // Verificar el cálculo de remuneración
-        System.out.println("Remuneración base: " + trabajo.getRemuneracion());
-        System.out.println("Bono aplicado: " + carrera.aplicarBonos(2));
-        System.out.println("Remuneración con bono: " + remuneracionConBono);
-        System.out.println("Plata antes: " + getPlata());
-        System.out.println("Plata después: " + nuevaPlata);
 
         setPlata(nuevaPlata);
         modificarCordura(10);
@@ -123,26 +111,6 @@ public class Estudiante {
     public void descansar(){
         setCordura(cordura*1.2);
     }
-
-   /* public int modificarCordura(int base){
-        double corduraActual = getCordura();
-        double corduraRestar = 0;
-        if(corduraActual >= 75 && corduraActual <= 100){
-            corduraRestar = base;
-        } else if (corduraActual < 75 && corduraActual >= 50) {
-            corduraRestar = base * 1.25;
-        }else if (corduraActual < 50 && corduraActual >= 25) {
-            corduraRestar = base * 1.50;
-        }else if (corduraActual < 25 && corduraActual >= 0) {
-            corduraRestar = base * 1.75;
-        }
-        if((corduraActual - corduraRestar) >= 0){
-            setPlata(corduraActual - corduraRestar);
-            return 1;
-        }else{
-            return 0;
-        }
-    }*/
 
     public int modificarCordura(int base) {
         double corduraActual = getCordura();
