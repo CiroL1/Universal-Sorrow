@@ -143,6 +143,7 @@ public class Story {
         dias.add(domingo);
     }
 
+    //BUG: LUNES SE REPITE UNA VEZ Y CUANDO DOMINGO SE QUEDA SIN HORAS ACUMULA HORAS NEGATIVAS
     public void selectPosition(String nextPosition){
         switch(nextPosition){
             case "Study": study();  break;
