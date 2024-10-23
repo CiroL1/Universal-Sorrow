@@ -99,7 +99,8 @@ public class Estudiante {
     }
 
     public void trabajar(Trabajo trabajo){
-        setPlata(trabajo.getRemuneracion() * carrera.aplicarBonos(2));
+        double actual = getPlata();
+        setPlata(actual + (trabajo.getRemuneracion() * carrera.aplicarBonos(2)));
         modificarCordura(10);
     }
 
