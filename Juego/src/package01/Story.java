@@ -148,16 +148,16 @@ public class Story {
             case "Study": study();  break;
             case "Sleep": sleep(); dia.setTiempo(dia.getTiempo() - 7); break;
             case "Go out": goOut(); dia.setTiempo(dia.getTiempo() - 2); break;
-            case "Work": work(); dia.setTiempo(dia.getTiempo() - 3); break;
+            case "Work": work(); break;
             case ">": beggining(); ui.choice5.setVisible(false); break;
             case "1": estudio("1"); dia.setTiempo(dia.getTiempo() - 1); break;
-            case "2": estudio("2"); break;
-            case "3": estudio("3"); break;
-            case "4": estudio("4"); break;
-            case "13": Trabajar("13"); break;
-            case "14": Trabajar("14"); break;
-            case "15": Trabajar("15"); break;
-            case "16": Trabajar("16"); break;
+            case "2": estudio("2"); dia.setTiempo(dia.getTiempo() - 1); break;
+            case "3": estudio("3"); dia.setTiempo(dia.getTiempo() - 1); break;
+            case "4": estudio("4"); dia.setTiempo(dia.getTiempo() - 1); break;
+            case "13": Trabajar("13"); dia.setTiempo(dia.getTiempo() - 3); break;
+            case "14": Trabajar("14"); dia.setTiempo(dia.getTiempo() - 3); break;
+            case "15": Trabajar("15"); dia.setTiempo(dia.getTiempo() - 3); break;
+            case "16": Trabajar("16"); dia.setTiempo(dia.getTiempo() - 3); break;
         }
         actualizarDia(dia);
 
@@ -276,22 +276,22 @@ public class Story {
                 estudianteActual.estudiar(materias.getFirst());
                 ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
                 ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-            break;
+                break;
             case "2": ui.mainTextArea.setText("You study " + materias.get(1).getNombre() + ".\nPassing chances " + materias.get(1).getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.get(1));
                 ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
                 ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-            break;
+                break;
             case "3": ui.mainTextArea.setText("You study " + materias.get(2).getNombre() + ".\nPassing chances " + materias.get(2).getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.get(2));
                 ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
                 ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-            break;
+                break;
             case "4": ui.mainTextArea.setText("You study " + materias.getLast().getNombre() + ".\nPassing chances " + materias.getLast().getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.getLast());
                 ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
                 ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-            break;
+                break;
         }
     }
 
