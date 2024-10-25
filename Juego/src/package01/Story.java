@@ -301,11 +301,6 @@ public class Story {
     }
     public void goOut(){
         ui.mainTextArea.setText("You decide to go out with friends and enjoy the day. \nYour chances of passing decrease. \nYou lose money");
-        /*List<Materia> materias  = estudianteActual.getMaterias();
-        ui.choice1.setText("" + materias.getFirst().getNombre());
-        ui.choice2.setText("" + materias.get(1).getNombre());
-        ui.choice3.setText("" + materias.get(2).getNombre());
-        ui.choice4.setText("" + materias.getLast().getNombre());*/
         ui.choice1.setText("");
         ui.choice2.setText("");
         ui.choice3.setText("");
@@ -400,9 +395,9 @@ public class Story {
         double probabilidadAprobarMateria = materias.get(i).getProbabilidadDeAprobar();
         if (resultado < probabilidadAprobarMateria){
             ui.mainTextArea.setText("You did an " + materias.get(i).getNombre() + " exam. \nYou passed.");
-            failedExams += 1;
         } else {
             ui.mainTextArea.setText("You did an " + materias.get(i).getNombre() + " exam. \nYou failed.");
+            failedExams += 1;
         }
     }
 
