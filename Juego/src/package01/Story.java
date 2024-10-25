@@ -217,7 +217,6 @@ public class Story {
     public void pasarAlSiguienteDia(int parcial) {
         // Encuentra el índice del día actual en el ArrayList
         int indiceActual = dias.indexOf(dia);
-        System.out.println(parcial);
 
         // Comprueba si hay un día siguiente
         if (indiceActual + 1 < dias.size()) {
@@ -226,7 +225,7 @@ public class Story {
             actualizarDia(dia);
 
             // Comprueba si estamos en la segunda semana
-            if (contadorRepeticiones >= 1 && parcial == 1) {
+            if (contadorRepeticiones >= 1 && indiceActual != 1 && indiceActual != 7 && parcial == 1) {
                 parciales(); // Solo llama a parciales si estamos en la segunda semana
             } else {
                 beggining(); // Muestra la nueva situación
