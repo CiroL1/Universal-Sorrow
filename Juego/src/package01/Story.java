@@ -11,6 +11,7 @@ public class Story {
     public Estudiante estudianteActual;
     public ArrayList<Trabajo> trabajosActual;
     Dia dia = null;
+    private int contadorRepeticiones = 0;
     ArrayList<Dia> dias = new ArrayList<>();
 
     public Story(Main main, UI ui, VisibilityManager vm) {
@@ -210,7 +211,6 @@ public class Story {
         }
     }
 
-    //BUG: lunes se repite una vez antes de avanzar de día
     public void pasarAlSiguienteDia() {
         // Encuentra el índice del día actual en el ArrayList
         int indiceActual = dias.indexOf(dia);
@@ -222,10 +222,21 @@ public class Story {
             actualizarDia(dia); // Actualiza la interfaz
             beggining(); // Muestra la nueva situación
         } else {
-            // Lógica cuando no hay más días (fin del juego, etc.)
-            ui.mainTextArea.setText("No more days left.");
+            // Se ha alcanzado el final de la lista de días
+            if (contadorRepeticiones < 1) { // Comprueba si se ha recorrido una vez completa la lista
+                contadorRepeticiones++;
+                dia = dias.get(0); // Reinicia al primer día
+                dia.setTiempo(7); // Restablece el tiempo
+                actualizarDia(dia); // Actualiza la interfaz
+                beggining(); // Muestra la nueva situación
+            } else {
+                // Lógica cuando no hay más días (fin del juego, etc.)
+                ui.mainTextArea.setText("No more days left.");
+                Endings();
+            }
         }
     }
+
 
     public void beggining() {
         ui.daysTextArea.setText("Day: " + dia.getDia() + "\nHora: " + dia.getTiempo());
@@ -371,5 +382,17 @@ public class Story {
         estudianteActual.descansar();
         ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
         ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+    }
+
+    public void Endings(){
+        double corduraFinal = estudianteActual.getCordura();
+        double plataFinal = estudianteActual.getPlata();
+        int capacidadFinal = estudianteActual.getCapacidadDeestudio();
+
+        if (corduraFinal <= 20){
+            ui.mainTextArea.setText("In the quiet, I chose the sea. \nA final exhale, and the waves held me gently, where silence felt like home.");
+        } else {
+            ui.mainTextArea.setText("In the soft dusk, I chose the light. \nA breath of laughter, and the bottle sighed open—a slow pour of golden hope, filling the night.");
+        }
     }
 }

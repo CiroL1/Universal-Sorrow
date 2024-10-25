@@ -108,7 +108,11 @@ public class Estudiante {
 
 
     public void descansar(){
-        setCordura(cordura*1.2);
+        if (getCordura() > 100){
+            setCordura(100);
+        } else {
+            setCordura(cordura*1.2);
+        }
     }
 
     public int modificarCordura(int base) {
