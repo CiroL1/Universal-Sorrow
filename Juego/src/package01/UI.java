@@ -5,10 +5,10 @@ import java.awt.*;
 
 public class UI {
     JFrame window;
-    JPanel titleNamePanel, startButtonPanel,quitButtonPanel, difficultyPanel, mainTextPanel, choiceButtonPanel, playerPanel;
+    JPanel titleNamePanel, startButtonPanel,quitButtonPanel, explanationPanel, explanationButtonPanel, difficultyPanel, mainTextPanel, choiceButtonPanel, playerPanel;
     JLabel titleNameLabel, sanityLabel, sNumberLabel, moneyLabel, moneyNameLabel, reputationLabel, repNameLabel;
-    JButton startButton, quitButton, difEasy, difMedium, difHard, choice1, choice2, choice3, choice4, choice5;
-    JTextArea mainTextArea, daysTextArea, difTextArea;
+    JButton startButton, quitButton, nextButton, difEasy, difMedium, difHard, choice1, choice2, choice3, choice4, choice5;
+    JTextArea mainTextArea, daysTextArea, gameExplanation, difTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 26);
 
@@ -48,12 +48,31 @@ public class UI {
         titleNameLabel.setFont(titleFont);
         titleNamePanel.add(titleNameLabel);
 
+
+        //REVISAR CONFIGURACION DENTRO DE LA VENTANA, NO ESTA BIEN POSICIONADO NI BIEN SUS BOUNDS
+        //game explanation
+        explanationPanel = new JPanel();
+        explanationPanel.setBounds(40,100,600,300);
+        explanationPanel.setBackground(Color.black);
+        gameExplanation = new JTextArea("This is the game explanation text");
+        gameExplanation.setBackground(Color.black);
+        gameExplanation.setForeground(Color.white);
+        gameExplanation.setFont(normalFont);
+        gameExplanation.setLineWrap(true);
+        gameExplanation.setWrapStyleWord(true);
+        gameExplanation.setEditable(false);
+        explanationPanel.add(gameExplanation);
+        window.add(explanationPanel);
+
         //buttons
         startButton = new JButton("Start");
         styleButton(startButton, cHandler, "start");
 
         quitButton = new JButton("Quit");
         styleButton(quitButton, cHandler, "quit");
+
+        nextButton = new JButton("Next");
+        styleButton(nextButton, cHandler, "next");
 
         // Difficulty buttons
         difEasy = new JButton("Marketing");
@@ -95,7 +114,15 @@ public class UI {
         quitButtonPanel.add(quitButton);
         quitButtonPanel.setVisible(true);
 
+        //how the game works button
+        explanationButtonPanel = new JPanel();
+        explanationButtonPanel.setBounds(300, 450, 200, 100);
+        explanationButtonPanel.setBackground(Color.black);
+        explanationButtonPanel.add(nextButton);
+        explanationButtonPanel.setVisible(false);
+
         window.add(titleNamePanel);
+        window.add(explanationButtonPanel);
         window.add(startButtonPanel);
         window.add(quitButtonPanel);
 
@@ -161,6 +188,7 @@ public class UI {
         choiceButtonPanel.setBackground(Color.black);
         choiceButtonPanel.setLayout(new GridLayout(5, 1));
         choiceButtonPanel.setVisible(false);
+
         window.add(choiceButtonPanel);
 
         choiceButtonPanel.add(choice1);
@@ -172,6 +200,7 @@ public class UI {
         choiceButtonPanel.add(choice4);
 
         choiceButtonPanel.add(choice5);
+
         choice5.setVisible(false);
 
         playerPanel = new JPanel();

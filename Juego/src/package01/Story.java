@@ -401,4 +401,8 @@ public class Story {
         echoes of love, fading with morning light.
         */
     }
+
+    public void interaccionesNPC(){
+
+    }
 }

@@ -28,6 +28,10 @@ public class Main {
             String dificultadElegida = "";
             switch (yourChoice) {
                 case "start":
+                    vm.explanation();
+                    story.beggining();
+                    break;
+                case "next":
                     vm.titleToDifficulty();
                     story.beggining();
                     break;
