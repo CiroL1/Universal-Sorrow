@@ -10,21 +10,27 @@ public class Story {
     VisibilityManager vm;
     public Estudiante estudianteActual;
     public ArrayList<Trabajo> trabajosActual;
-    Dia dia = new Dia("Lunes", 7, null);
-    Dia lunes = new Dia("Lunes", 7, null);
-    Dia martes = new Dia("Martes", 7, null);
-    Dia miercoles = new Dia("Miércoles", 7, null);
-    Dia jueves = new Dia("Jueves", 7, null);
-    Dia viernes = new Dia("Viernes", 7, null);
-    Dia sabado = new Dia("Sábado", 7, null);
-    Dia domingo = new Dia("Domingo", 7, null);
+    Dia dia = null;
     ArrayList<Dia> dias = new ArrayList<>();
 
     public Story(Main main, UI ui, VisibilityManager vm) {
         this.main = main;
         this.ui = ui;
         this.vm = vm;
+
+        // Inicializar los días en el ArrayList
+        dias.add(new Dia("Domingo", 7, null));
+        dias.add(new Dia("Lunes", 7, null));
+        dias.add(new Dia("Martes", 7, null));
+        dias.add(new Dia("Miércoles", 7, null));
+        dias.add(new Dia("Jueves", 7, null));
+        dias.add(new Dia("Viernes", 7, null));
+        dias.add(new Dia("Sábado", 7, null));
+
+        // Establecer el día inicial como el primer elemento de la lista
+        this.dia = dias.get(0);
     }
+
 
     public Estudiante estudianteMarketing() {
         //easy
@@ -134,16 +140,9 @@ public class Story {
     public void defaultSetup(Estudiante estudiante){
         ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
         ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
-        dias.add(lunes);
-        dias.add(martes);
-        dias.add(miercoles);
-        dias.add(jueves);
-        dias.add(viernes);
-        dias.add(sabado);
-        dias.add(domingo);
+        this.dia = dias.get(0); // Inicializa con el primer día de la lista
     }
 
-    //BUG FIX: LUNES SE REPITE UNA VEZ Y CUANDO DOMINGO SE QUEDA SIN HORAS ACUMULA HORAS NEGATIVAS
     public void selectPosition(String nextPosition) {
         switch (nextPosition) {
             case "Study":
