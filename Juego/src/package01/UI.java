@@ -6,7 +6,7 @@ import java.awt.*;
 public class UI {
     JFrame window;
     JPanel titleNamePanel, startButtonPanel,quitButtonPanel, difficultyPanel, mainTextPanel, choiceButtonPanel, playerPanel;
-    JLabel titleNameLabel, sanityLabel, sNumberLabel, moneyLabel, moneyNameLabel, passChanceLabel, pcNameLabel;
+    JLabel titleNameLabel, sanityLabel, sNumberLabel, moneyLabel, moneyNameLabel, reputationLabel, repNameLabel;
     JButton startButton, quitButton, difEasy, difMedium, difHard, choice1, choice2, choice3, choice4, choice5;
     JTextArea mainTextArea, daysTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
@@ -166,9 +166,10 @@ public class UI {
         choice5.setVisible(false);
 
         playerPanel = new JPanel();
-        playerPanel.setBounds(90, 15, 650, 50);
+        playerPanel.setBounds(40, 30, 800, 50);
         playerPanel.setBackground(Color.black);
-        playerPanel.setLayout(new GridLayout(1, 4));
+        //playerPanel.setLayout(new GridLayout(1, 6,0,0)); si es este y: 15
+        playerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 40, 0));
         window.add(playerPanel);
 
         //Sanity
@@ -192,6 +193,17 @@ public class UI {
         moneyNameLabel.setForeground(Color.white);
         moneyNameLabel.setFont(normalFont);
         playerPanel.add(moneyNameLabel);
+
+        //Reputation
+        reputationLabel = new JLabel("Reputation: ");
+        reputationLabel.setForeground(Color.white);
+        reputationLabel.setFont(normalFont);
+        playerPanel.add(reputationLabel);
+
+        repNameLabel = new JLabel();
+        repNameLabel.setForeground(Color.white);
+        repNameLabel.setFont(normalFont);
+        playerPanel.add(repNameLabel);
 
         playerPanel.setVisible(false);
 

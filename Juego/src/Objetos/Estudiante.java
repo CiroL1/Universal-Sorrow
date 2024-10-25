@@ -10,12 +10,14 @@ public class Estudiante {
     private String tipo; // "Jugador" o "NPC"
     private Carrera carrera;
     private List<Materia> materias;
+    private double reputacion;
 
-    public Estudiante(String nombre, double cordura, double plata, int capacidadDeestudio, String tipo, Carrera carrera, List<Materia> materias) {
+    public Estudiante(String nombre, double cordura, double plata, int capacidadDeestudio, double reputacion, String tipo, Carrera carrera, List<Materia> materias) {
         this.nombre = nombre;
         this.cordura = cordura;
         this.plata = plata;
         this.capacidadDeestudio = capacidadDeestudio;
+        this.reputacion = reputacion;
         this.tipo = tipo;
         this.carrera = carrera;
         this.materias = materias;
@@ -77,6 +79,18 @@ public class Estudiante {
         this.materias = materias;
     }
 
+    public double getReputacion() {return reputacion;}
+
+    public void setReputacion(double reputacion) {
+        if (reputacion <= 0){
+            reputacion = 0;
+        } else if (reputacion >= 100){
+            reputacion = 100;
+        } else {
+            this.reputacion = reputacion;
+        }
+    }
+
     //Metodos
     public void estudiar(Materia materia){
         double actual = materia.getProbabilidadDeAprobar();
@@ -112,6 +126,7 @@ public class Estudiante {
             setCordura(100);
         } else {
             setCordura(cordura*1.2);
+            setReputacion(reputacion*0.9);
         }
     }
 
@@ -121,12 +136,16 @@ public class Estudiante {
 
         if (corduraActual >= 75 && corduraActual <= 100) {
             corduraRestar = base;
+            setReputacion(reputacion*0.9);
         } else if (corduraActual < 75 && corduraActual >= 50) {
             corduraRestar = base * 1.25;
+            setReputacion(reputacion*0.8);
         } else if (corduraActual < 50 && corduraActual >= 25) {
             corduraRestar = base * 1.50;
+            setReputacion(reputacion*0.7);
         } else if (corduraActual < 25 && corduraActual >= 0) {
             corduraRestar = base * 1.75;
+            setReputacion(reputacion*0.6);
         }
 
         if ((corduraActual - corduraRestar) >= 0) {

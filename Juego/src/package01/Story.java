@@ -56,7 +56,7 @@ public class Story {
         trabajos.add(analistaMercado);
         trabajos.add(creadorContenido);
         Carrera marketing = new Carrera("Marketing", materias, bonos);
-        Estudiante estudiante = new Estudiante("juan", 100, 10000, 10, "jugador", marketing, materias);
+        Estudiante estudiante = new Estudiante("juan", 100, 10000, 10, 100.0d,"jugador", marketing, materias);
         setTrabajos(trabajos);
         return estudiante;
     }
@@ -82,7 +82,7 @@ public class Story {
         trabajos.add(bailarinFreelance);
         trabajos.add(artistaCallejero);
         Carrera artes = new Carrera("Artes", materias, bonos);
-        Estudiante estudiante = new Estudiante("juan", 100, 1000, 10, "jugador", artes, materias);
+        Estudiante estudiante = new Estudiante("juan", 100, 1000, 10, 100.0d,"jugador", artes, materias);
         setTrabajos(trabajos);
         return estudiante;
     }
@@ -108,7 +108,7 @@ public class Story {
         trabajos.add(ingenieroElectronico);
         trabajos.add(consultorProyectos);
         Carrera ingenieria = new Carrera("Ingenieria", materias, bonos);
-        Estudiante estudiante = new Estudiante("juan", 100, 5000, 10, "jugador", ingenieria, materias);
+        Estudiante estudiante = new Estudiante("juan", 100, 5000, 10, 100.0d,"jugador", ingenieria, materias);
         setTrabajos(trabajos);
         return estudiante;
     }
@@ -143,6 +143,7 @@ public class Story {
     public void defaultSetup(Estudiante estudiante){
         ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
         ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+        ui.repNameLabel.setText("" + Math.round(estudianteActual.getReputacion()));
         this.dia = dias.get(0); // Inicializa con el primer día de la lista
     }
 
@@ -300,12 +301,14 @@ public class Story {
 
     }
     public void goOut(){
-        ui.mainTextArea.setText("You decide to go out with friends and enjoy the day. \nYour chances of passing decrease. \nYou lose money");
+        ui.mainTextArea.setText("You decide to go out with friends and enjoy the day. \nYour chances of passing decrease. \nYour reputation goes way up.");
         ui.choice1.setText("");
         ui.choice2.setText("");
         ui.choice3.setText("");
         ui.choice4.setText("");
         ui.choice5.setVisible(true);
+
+        estudianteActual.setReputacion(estudianteActual.getReputacion()*1.5);
 
         main.nextPosition1 = "9";
         main.nextPosition2 = "10";
@@ -405,9 +408,12 @@ public class Story {
         double corduraFinal = estudianteActual.getCordura();
         double plataFinal = estudianteActual.getPlata();
         int capacidadFinal = estudianteActual.getCapacidadDeestudio();
+        double reputacionFinal = estudianteActual.getReputacion();
 
         if (corduraFinal <= 20 && failedExams >= 3){
             ui.mainTextArea.setText("In the quiet, I chose the sea. \nA final exhale, and the waves held me gently, where silence felt like home.");
+        } else if (corduraFinal <= 20 && reputacionFinal <= 20){
+            ui.mainTextArea.setText("Fingers trace the edge of emptiness,  \n" + "laughter swallowed by shadows.  \n" + "Solitude wraps tight,  \n" + "dreams slipping into darkness.");
         } else {
             ui.mainTextArea.setText("In the soft dusk, I chose the light. \nA breath of laughter, and the bottle sighed open—a slow pour of golden hope, filling the night.");
         }
