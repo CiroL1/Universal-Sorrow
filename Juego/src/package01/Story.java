@@ -1,6 +1,6 @@
 package package01;
 import Objetos.*;
-
+import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,11 +8,13 @@ public class Story {
     Main main;
     UI ui;
     VisibilityManager vm;
-    public Estudiante estudianteActual;
-    public ArrayList<Trabajo> trabajosActual;
-    Dia dia = null;
+    private Estudiante estudianteActual;
+    private ArrayList<Trabajo> trabajosActual;
+    Dia dia;
     private int contadorRepeticiones = 0;
     ArrayList<Dia> dias = new ArrayList<>();
+    Random random = new Random();
+    int failedExams;
 
     public Story(Main main, UI ui, VisibilityManager vm) {
         this.main = main;
@@ -214,6 +216,7 @@ public class Story {
     public void pasarAlSiguienteDia() {
         // Encuentra el índice del día actual en el ArrayList
         int indiceActual = dias.indexOf(dia);
+        int val = random.nextInt(2);
 
         // Comprueba si hay un día siguiente
         if (indiceActual + 1 < dias.size()) {
@@ -228,7 +231,11 @@ public class Story {
                 dia = dias.get(0); // Reinicia al primer día
                 dia.setTiempo(7); // Restablece el tiempo
                 actualizarDia(dia); // Actualiza la interfaz
-                beggining(); // Muestra la nueva situación
+                if (val == 1){
+                    parciales();
+                } else {
+                    beggining(); // Muestra la nueva situación
+                }
             } else {
                 // Lógica cuando no hay más días (fin del juego, etc.)
                 ui.mainTextArea.setText("No more days left.");
@@ -384,15 +391,35 @@ public class Story {
         ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
     }
 
+    public void parciales(){
+        List<Materia> materias  = estudianteActual.getMaterias();
+        int i = random.nextInt(materias.size());
+        double resultado = random.nextDouble();
+        double probabilidadAprobarMateria = materias.get(i).getProbabilidadDeAprobar();
+        if (resultado < probabilidadAprobarMateria){
+            ui.mainTextArea.setText("You did an " + materias.get(i).getNombre() + "exam. \nYou passed.");
+            failedExams += 1;
+        } else {
+            ui.mainTextArea.setText("You did an " + materias.get(i).getNombre() + "exam. \nYou failed.");
+        }
+    }
+
     public void Endings(){
         double corduraFinal = estudianteActual.getCordura();
         double plataFinal = estudianteActual.getPlata();
         int capacidadFinal = estudianteActual.getCapacidadDeestudio();
 
-        if (corduraFinal <= 20 && plataFinal <= 2000){
+        if (corduraFinal <= 20 && failedExams >= 3){
             ui.mainTextArea.setText("In the quiet, I chose the sea. \nA final exhale, and the waves held me gently, where silence felt like home.");
         } else {
             ui.mainTextArea.setText("In the soft dusk, I chose the light. \nA breath of laughter, and the bottle sighed open—a slow pour of golden hope, filling the night.");
         }
+
+        /*
+        Fingers trace old promises, now shadows.
+        A final kiss, heavy with silence.
+        Sheets tangled, bodies drift apart—
+        echoes of love, fading with morning light.
+        */
     }
 }

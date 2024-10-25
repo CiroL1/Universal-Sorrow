@@ -12,6 +12,17 @@ public class UI {
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 26);
 
+    private void styleButton(JButton button, Main.ChoiceHandler cHandler, String actionCommand) {
+        button.setBackground(Color.black);
+        button.setForeground(Color.white);
+        button.setFont(normalFont);
+        button.setFocusPainted(false);
+        button.setContentAreaFilled(false); // Disables the default content fill to prevent OS-specific changes
+        button.setOpaque(true); // Ensures background color is displayed
+        button.addActionListener(cHandler);
+        button.setActionCommand(actionCommand);
+    }
+
     public void createUI(Main.ChoiceHandler cHandler){
 
         //window
@@ -30,17 +41,44 @@ public class UI {
         titleNameLabel.setFont(titleFont);
         titleNamePanel.add(titleNameLabel);
 
+        // Example of updated button styling
+        startButton = new JButton("Start");
+        styleButton(startButton, cHandler, "start");
+
+        quitButton = new JButton("Quit");
+        styleButton(quitButton, cHandler, "quit");
+
+        // Difficulty buttons
+        difEasy = new JButton("Marketing");
+        styleButton(difEasy, cHandler, "easy");
+
+        difMedium = new JButton("Artes");
+        styleButton(difMedium, cHandler, "medium");
+
+        difHard = new JButton("Ingeniería");
+        styleButton(difHard, cHandler, "hard");
+
+        // Choice buttons
+        choice1 = new JButton("Choice 1");
+        styleButton(choice1, cHandler, "choice1");
+
+        choice2 = new JButton("Choice 2");
+        styleButton(choice2, cHandler, "choice2");
+
+        choice3 = new JButton("Choice 3");
+        styleButton(choice3, cHandler, "choice3");
+
+        choice4 = new JButton("Choice 4");
+        styleButton(choice4, cHandler, "choice4");
+
+        choice5 = new JButton(">");
+        styleButton(choice5, cHandler, ">");
+
+
         //start button
         startButtonPanel = new JPanel();
         startButtonPanel.setBounds(300, 400, 200, 100);
         startButtonPanel.setBackground(Color.black);
-        startButton = new JButton("Start");
-        startButton.setBackground(Color.black);
-        startButton.setForeground(Color.white);
-        startButton.setFont(normalFont);
-        startButton.setFocusPainted(false);
-        startButton.addActionListener(cHandler);
-        startButton.setActionCommand("start");
         startButtonPanel.add(startButton);
         startButtonPanel.setVisible(true);
 
@@ -48,13 +86,6 @@ public class UI {
         quitButtonPanel = new JPanel();
         quitButtonPanel.setBounds(300, 450, 200, 100);
         quitButtonPanel.setBackground(Color.black);
-        quitButton = new JButton("Quit");
-        quitButton.setBackground(Color.black);
-        quitButton.setForeground(Color.white);
-        quitButton.setFont(normalFont);
-        quitButton.setFocusPainted(false);
-        quitButton.addActionListener(cHandler);
-        quitButton.setActionCommand("quit");
         quitButtonPanel.add(quitButton);
         quitButtonPanel.setVisible(true);
 
@@ -71,31 +102,13 @@ public class UI {
         window.add(difficultyPanel);
 
         //difficulty buttons
-        difEasy = new JButton("Marketing");
-        difEasy.setBackground(Color.black);
-        difEasy.setForeground(Color.white);
-        difEasy.setFont(normalFont);
-        difEasy.setFocusPainted(false);
-        difEasy.addActionListener(cHandler);
-        difEasy.setActionCommand("easy");
+
         difficultyPanel.add(difEasy);
 
-        difMedium = new JButton("Artes");
-        difMedium.setBackground(Color.black);
-        difMedium.setForeground(Color.white);
-        difMedium.setFont(normalFont);
-        difMedium.setFocusPainted(false);
-        difMedium.addActionListener(cHandler);
-        difMedium.setActionCommand("medium");
+
         difficultyPanel.add(difMedium);
 
-        difHard = new JButton("Ingeniería");
-        difHard.setBackground(Color.black);
-        difHard.setForeground(Color.white);
-        difHard.setFont(normalFont);
-        difHard.setFocusPainted(false);
-        difHard.addActionListener(cHandler);
-        difHard.setActionCommand("hard");
+
         difficultyPanel.add(difHard);
 
         //Game screen
@@ -134,49 +147,14 @@ public class UI {
         choiceButtonPanel.setVisible(false);
         window.add(choiceButtonPanel);
 
-        choice1 = new JButton("Choice 1");
-        choice1.setBackground(Color.black);
-        choice1.setForeground(Color.white);
-        choice1.setFont(normalFont);
-        choice1.setFocusPainted(false);
-        choice1.addActionListener(cHandler);
-        choice1.setActionCommand("choice1");
         choiceButtonPanel.add(choice1);
 
-        choice2 = new JButton("Choice 2");
-        choice2.setBackground(Color.black);
-        choice2.setForeground(Color.white);
-        choice2.setFont(normalFont);
-        choice2.setFocusPainted(false);
-        choice2.addActionListener(cHandler);
-        choice2.setActionCommand("choice2");
         choiceButtonPanel.add(choice2);
 
-        choice3 = new JButton("Choice 3");
-        choice3.setBackground(Color.black);
-        choice3.setForeground(Color.white);
-        choice3.setFont(normalFont);
-        choice3.setFocusPainted(false);
-        choice3.addActionListener(cHandler);
-        choice3.setActionCommand("choice3");
         choiceButtonPanel.add(choice3);
 
-        choice4 = new JButton("Choice 4");
-        choice4.setBackground(Color.black);
-        choice4.setForeground(Color.white);
-        choice4.setFont(normalFont);
-        choice4.setFocusPainted(false);
-        choice4.addActionListener(cHandler);
-        choice4.setActionCommand("choice4");
         choiceButtonPanel.add(choice4);
 
-        choice5 = new JButton(">");
-        choice5.setBackground(Color.black);
-        choice5.setForeground(Color.white);
-        choice5.setFont(normalFont);
-        choice5.setFocusPainted(false);
-        choice5.addActionListener(cHandler);
-        choice5.setActionCommand(">");
         choiceButtonPanel.add(choice5);
         choice5.setVisible(false);
 
