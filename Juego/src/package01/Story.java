@@ -389,7 +389,7 @@ public class Story {
         double plataFinal = estudianteActual.getPlata();
         int capacidadFinal = estudianteActual.getCapacidadDeestudio();
 
-        if (corduraFinal <= 20){
+        if (corduraFinal <= 20 && plataFinal <= 2000){
             ui.mainTextArea.setText("In the quiet, I chose the sea. \nA final exhale, and the waves held me gently, where silence felt like home.");
         } else {
             ui.mainTextArea.setText("In the soft dusk, I chose the light. \nA breath of laughter, and the bottle sighed open—a slow pour of golden hope, filling the night.");
