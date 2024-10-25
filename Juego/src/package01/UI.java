@@ -17,13 +17,20 @@ public class UI {
         button.setForeground(Color.white);
         button.setFont(normalFont);
         button.setFocusPainted(false);
-        button.setContentAreaFilled(false); // Disables the default content fill to prevent OS-specific changes
+        button.setContentAreaFilled(true); // Allow content area to be filled
         button.setOpaque(true); // Ensures background color is displayed
+        button.setBorderPainted(true); // Hides border to prevent default rendering
         button.addActionListener(cHandler);
         button.setActionCommand(actionCommand);
     }
 
     public void createUI(Main.ChoiceHandler cHandler){
+
+        try {
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //window
         window = new JFrame("Universal Sorrow");
