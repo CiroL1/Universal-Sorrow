@@ -48,4 +48,18 @@ public class VisibilityManager {
         ui.choiceButtonPanel.setVisible(true);
         ui.playerPanel.setVisible(true);
     }
+
+    public void ending(){
+        //hide title screen
+        ui.titleNamePanel.setVisible(false);
+        ui.startButtonPanel.setVisible(false);
+        ui.quitButtonPanel.setVisible(false);
+        //hide difficulty screen
+        ui.difficultyPanel.setVisible(false);
+        //show game screen except choices
+        ui.daysTextArea.setVisible(true);
+        ui.mainTextPanel.setVisible(true);
+        ui.choiceButtonPanel.setVisible(false);
+        ui.playerPanel.setVisible(true);
+    }
 }

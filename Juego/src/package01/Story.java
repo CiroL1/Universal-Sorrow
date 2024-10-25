@@ -31,7 +31,7 @@ public class Story {
         dias.add(new Dia("Sábado", 7, null));
 
         // Establecer el día inicial como el primer elemento de la lista
-        this.dia = dias.get(0);
+        this.dia = dias.getFirst();
     }
 
 
@@ -113,23 +113,16 @@ public class Story {
         return estudiante;
     }
 
-    public Estudiante difficultyChosen(String dificultad) {
-        Estudiante estudiante = null; // Inicializa el estudiante
+    public void difficultyChosen(String dificultad) {
+        Estudiante estudiante = switch (dificultad) {
+            case "easy" -> estudianteMarketing(); // Genera estudiante de Marketing
+            case "medium" -> estudianteArtes(); // Genera estudiante de Artes
+            case "hard" -> estudianteIngenieria(); // Genera estudiante de Ingeniería
+            default -> null; // Inicializa el estudiante
+        };
 
-        switch (dificultad) {
-            case "easy":
-                estudiante = estudianteMarketing(); // Genera estudiante de Marketing
-                break;
-            case "medium":
-                estudiante = estudianteArtes(); // Genera estudiante de Artes
-                break;
-            case "hard":
-                estudiante = estudianteIngenieria(); // Genera estudiante de Ingeniería
-                break;
-        }
         setEstudiante(estudiante);
-        defaultSetup(estudiante);
-        return estudiante;
+        defaultSetup();
     }
 
     public void setTrabajos(ArrayList<Trabajo> trabajos){
@@ -140,11 +133,11 @@ public class Story {
         this.estudianteActual = estudiante; //Método para establecer el estudiante
     }
 
-    public void defaultSetup(Estudiante estudiante){
+    public void defaultSetup(){
         ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
         ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
         ui.repNameLabel.setText("" + Math.round(estudianteActual.getReputacion()));
-        this.dia = dias.get(0); // Inicializa con el primer día de la lista
+        this.dia = dias.getFirst(); // Inicializa con el primer día de la lista
     }
 
     public void selectPosition(String nextPosition) {
@@ -165,6 +158,7 @@ public class Story {
                 break;
             case ">":
                 beggining();
+                updateTexts();
                 ui.choice5.setVisible(false);
                 break;
             case "1":
@@ -230,15 +224,17 @@ public class Story {
                 parciales(); // Solo llama a parciales si estamos en la segunda semana
             } else {
                 beggining(); // Muestra la nueva situación
+                updateTexts();
             }
         } else {
             // Se ha alcanzado el final de la lista de días
             if (contadorRepeticiones < 1) { // Comprueba si se ha recorrido una vez completa la lista
                 contadorRepeticiones++;
-                dia = dias.get(0); // Reinicia al primer día
+                dia = dias.getFirst(); // Reinicia al primer día
                 dia.setTiempo(7); // Restablece el tiempo
                 actualizarDia(dia); // Actualiza la interfaz
                 beggining();
+                updateTexts();
             } else {
                 // Lógica cuando no hay más días (fin del juego, etc.)
                 ui.mainTextArea.setText("No more days left.");
@@ -247,6 +243,11 @@ public class Story {
         }
     }
 
+    public void updateTexts(){
+        ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
+        ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+        ui.repNameLabel.setText("" + Math.round(estudianteActual.getReputacion()));
+    }
 
     public void beggining() {
         ui.daysTextArea.setText("Day: " + dia.getDia() + "\nHora: " + dia.getTiempo());
@@ -271,10 +272,10 @@ public class Story {
     public void study(){
         ui.mainTextArea.setText("You decide to prepare yourself and study. \nChoose which one to begin with");
         List<Materia> materias  = estudianteActual.getMaterias();
-        ui.choice1.setText("" + materias.getFirst().getNombre());
-        ui.choice2.setText("" + materias.get(1).getNombre());
-        ui.choice3.setText("" + materias.get(2).getNombre());
-        ui.choice4.setText("" + materias.getLast().getNombre());
+        ui.choice1.setText(materias.getFirst().getNombre());
+        ui.choice2.setText(materias.get(1).getNombre());
+        ui.choice3.setText(materias.get(2).getNombre());
+        ui.choice4.setText(materias.getLast().getNombre());
         ui.choice5.setVisible(true);
 
         main.nextPosition1 = "1";
@@ -285,44 +286,23 @@ public class Story {
     }
     public void sleep(){
         ui.mainTextArea.setText("You decide to sleep through the day. \nYour chances of passing decrease and you feel guilty");
-        ui.choice1.setText("");
-        ui.choice2.setText("");
-        ui.choice3.setText("");
-        ui.choice4.setText("");
-        ui.choice5.setVisible(true);
 
         Dormir();
-
-        main.nextPosition1 = "5";
-        main.nextPosition2 = "6";
-        main.nextPosition3 = "7";
-        main.nextPosition4 = "8";
-        main.nextPosition5 = ">";
-
     }
     public void goOut(){
         ui.mainTextArea.setText("You decide to go out with friends and enjoy the day. \nYour chances of passing decrease. \nYour reputation goes way up.");
-        ui.choice1.setText("");
-        ui.choice2.setText("");
-        ui.choice3.setText("");
-        ui.choice4.setText("");
-        ui.choice5.setVisible(true);
 
         estudianteActual.setReputacion(estudianteActual.getReputacion()*1.5);
 
-        main.nextPosition1 = "9";
-        main.nextPosition2 = "10";
-        main.nextPosition3 = "11";
-        main.nextPosition4 = "12";
-        main.nextPosition5 = ">";
+        updateTexts();
     }
 
     public void work(){
         ui.mainTextArea.setText("You decide to work. \nYour chances of passing decrease and you feel guilty. You earn money");
-        ui.choice1.setText("" + trabajosActual.getFirst().getNombre());
-        ui.choice2.setText("" + trabajosActual.get(1).getNombre());
-        ui.choice3.setText("" + trabajosActual.get(2).getNombre());
-        ui.choice4.setText("" + trabajosActual.getLast().getNombre());
+        ui.choice1.setText(trabajosActual.getFirst().getNombre());
+        ui.choice2.setText(trabajosActual.get(1).getNombre());
+        ui.choice3.setText(trabajosActual.get(2).getNombre());
+        ui.choice4.setText(trabajosActual.getLast().getNombre());
         ui.choice5.setVisible(true);
 
         main.nextPosition1 = "13";
@@ -337,23 +317,19 @@ public class Story {
         switch (materia){
             case "1": ui.mainTextArea.setText("You study " + materias.getFirst().getNombre() + ".\nPassing chances " + materias.getFirst().getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.getFirst());
-                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
-                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                updateTexts();
                 break;
             case "2": ui.mainTextArea.setText("You study " + materias.get(1).getNombre() + ".\nPassing chances " + materias.get(1).getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.get(1));
-                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
-                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                updateTexts();
                 break;
             case "3": ui.mainTextArea.setText("You study " + materias.get(2).getNombre() + ".\nPassing chances " + materias.get(2).getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.get(2));
-                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
-                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                updateTexts();
                 break;
             case "4": ui.mainTextArea.setText("You study " + materias.getLast().getNombre() + ".\nPassing chances " + materias.getLast().getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.getLast());
-                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
-                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                updateTexts();
                 break;
         }
     }
@@ -362,23 +338,19 @@ public class Story {
         switch (trabajo){
             case "13": ui.mainTextArea.setText("You work " + trabajosActual.getFirst().getNombre() + ".\nYou gain ");
                 estudianteActual.trabajar(trabajosActual.getFirst());
-                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
-                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                updateTexts();
                 break;
             case "14": ui.mainTextArea.setText("You work " + trabajosActual.get(1).getNombre() + ".\nYou gain");
                 estudianteActual.trabajar(trabajosActual.get(1));
-                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
-                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                updateTexts();
                 break;
             case "15": ui.mainTextArea.setText("You work " + trabajosActual.get(2).getNombre() + ".\nYou gain");
                 estudianteActual.trabajar(trabajosActual.get(2));
-                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
-                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                updateTexts();
                 break;
             case "16": ui.mainTextArea.setText("You work " + trabajosActual.getLast().getNombre() + ".\nYou gain");
                 estudianteActual.trabajar(trabajosActual.getLast());
-                ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
-                ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+                updateTexts();
                 break;
 
         }
@@ -387,8 +359,7 @@ public class Story {
     public void Dormir(){
         ui.mainTextArea.setText("You go to sleep " + "\nYou regain sanity");
         estudianteActual.descansar();
-        ui.sNumberLabel.setText("" + Math.round(estudianteActual.getCordura()));
-        ui.moneyNameLabel.setText("" + Math.round(estudianteActual.getPlata()));
+        updateTexts();
     }
 
     public void parciales(){
@@ -405,6 +376,7 @@ public class Story {
     }
 
     public void Endings(){
+        vm.ending();
         double corduraFinal = estudianteActual.getCordura();
         double plataFinal = estudianteActual.getPlata();
         int capacidadFinal = estudianteActual.getCapacidadDeestudio();
@@ -413,7 +385,11 @@ public class Story {
         if (corduraFinal <= 20 && failedExams >= 3){
             ui.mainTextArea.setText("In the quiet, I chose the sea. \nA final exhale, and the waves held me gently, where silence felt like home.");
         } else if (corduraFinal <= 20 && reputacionFinal <= 20){
-            ui.mainTextArea.setText("Fingers trace the edge of emptiness,  \n" + "laughter swallowed by shadows.  \n" + "Solitude wraps tight,  \n" + "dreams slipping into darkness.");
+            ui.mainTextArea.setText("""
+                    Fingers trace the edge of emptiness, \s
+                    laughter swallowed by shadows. \s
+                    Solitude wraps tight, \s
+                    dreams slipping into darkness.""");
         } else {
             ui.mainTextArea.setText("In the soft dusk, I chose the light. \nA breath of laughter, and the bottle sighed open—a slow pour of golden hope, filling the night.");
         }

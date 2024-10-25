@@ -8,7 +8,7 @@ public class UI {
     JPanel titleNamePanel, startButtonPanel,quitButtonPanel, difficultyPanel, mainTextPanel, choiceButtonPanel, playerPanel;
     JLabel titleNameLabel, sanityLabel, sNumberLabel, moneyLabel, moneyNameLabel, reputationLabel, repNameLabel;
     JButton startButton, quitButton, difEasy, difMedium, difHard, choice1, choice2, choice3, choice4, choice5;
-    JTextArea mainTextArea, daysTextArea;
+    JTextArea mainTextArea, daysTextArea, difTextArea;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 26);
 
@@ -48,7 +48,7 @@ public class UI {
         titleNameLabel.setFont(titleFont);
         titleNamePanel.add(titleNameLabel);
 
-        // Example of updated button styling
+        //buttons
         startButton = new JButton("Start");
         styleButton(startButton, cHandler, "start");
 
@@ -81,7 +81,6 @@ public class UI {
         choice5 = new JButton(">");
         styleButton(choice5, cHandler, ">");
 
-
         //start button
         startButtonPanel = new JPanel();
         startButtonPanel.setBounds(300, 400, 200, 100);
@@ -102,11 +101,21 @@ public class UI {
 
         //difficulty screen
         difficultyPanel = new JPanel();
-        difficultyPanel.setBounds(300, 200, 200, 150);
+        difficultyPanel.setBounds(250, 200, 300, 150);
         difficultyPanel.setBackground(Color.black);
-        difficultyPanel.setLayout(new GridLayout(3,1));
+        difficultyPanel.setLayout(new GridLayout(4,1));
         difficultyPanel.setVisible(false);
         window.add(difficultyPanel);
+
+        //difficulty text
+        difTextArea = new JTextArea("Select a difficulty");
+        difTextArea.setBackground(Color.black);
+        difTextArea.setForeground(Color.white);
+        difTextArea.setFont(normalFont);
+        difTextArea.setLineWrap(true);
+        difTextArea.setWrapStyleWord(true);
+        difTextArea.setEditable(false);
+        difficultyPanel.add(difTextArea);
 
         //difficulty buttons
 
@@ -166,10 +175,10 @@ public class UI {
         choice5.setVisible(false);
 
         playerPanel = new JPanel();
-        playerPanel.setBounds(40, 30, 800, 50);
+        playerPanel.setBounds(40, 15, 800, 50);
         playerPanel.setBackground(Color.black);
-        //playerPanel.setLayout(new GridLayout(1, 6,0,0)); si es este y: 15
-        playerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 40, 0));
+        playerPanel.setLayout(new GridLayout(1, 6,0,0));
+        //playerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 40, 0)); si es este y: 30
         window.add(playerPanel);
 
         //Sanity

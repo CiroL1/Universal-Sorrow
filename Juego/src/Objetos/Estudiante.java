@@ -82,13 +82,7 @@ public class Estudiante {
     public double getReputacion() {return reputacion;}
 
     public void setReputacion(double reputacion) {
-        if (reputacion <= 0){
-            reputacion = 0;
-        } else if (reputacion >= 100){
-            reputacion = 100;
-        } else {
-            this.reputacion = reputacion;
-        }
+        this.reputacion = Math.max(0, Math.min(reputacion, 100));
     }
 
     //Metodos
@@ -126,8 +120,8 @@ public class Estudiante {
             setCordura(100);
         } else {
             setCordura(cordura*1.2);
-            setReputacion(reputacion*0.9);
         }
+        setReputacion(reputacion*0.9);
     }
 
     public int modificarCordura(int base) {
