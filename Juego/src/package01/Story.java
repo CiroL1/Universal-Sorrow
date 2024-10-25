@@ -209,21 +209,28 @@ public class Story {
 
         // Verifica si el tiempo ha llegado a cero y pasa al siguiente día
         if (dia.getTiempo() == 0) {
-            pasarAlSiguienteDia();
+            int parcial = random.nextInt(2);
+            pasarAlSiguienteDia(parcial);
         }
     }
 
-    public void pasarAlSiguienteDia() {
+    public void pasarAlSiguienteDia(int parcial) {
         // Encuentra el índice del día actual en el ArrayList
         int indiceActual = dias.indexOf(dia);
-        int val = random.nextInt(2);
+        System.out.println(parcial);
 
         // Comprueba si hay un día siguiente
         if (indiceActual + 1 < dias.size()) {
             dia = dias.get(indiceActual + 1); // Asigna el siguiente día
             dia.setTiempo(7); // Establece el tiempo para el nuevo día, ajusta según sea necesario
-            actualizarDia(dia); // Actualiza la interfaz
-            beggining(); // Muestra la nueva situación
+            actualizarDia(dia);
+
+            // Comprueba si estamos en la segunda semana
+            if (contadorRepeticiones >= 1 && parcial == 1) {
+                parciales(); // Solo llama a parciales si estamos en la segunda semana
+            } else {
+                beggining(); // Muestra la nueva situación
+            }
         } else {
             // Se ha alcanzado el final de la lista de días
             if (contadorRepeticiones < 1) { // Comprueba si se ha recorrido una vez completa la lista
@@ -231,11 +238,7 @@ public class Story {
                 dia = dias.get(0); // Reinicia al primer día
                 dia.setTiempo(7); // Restablece el tiempo
                 actualizarDia(dia); // Actualiza la interfaz
-                if (val == 1){
-                    parciales();
-                } else {
-                    beggining(); // Muestra la nueva situación
-                }
+                beggining();
             } else {
                 // Lógica cuando no hay más días (fin del juego, etc.)
                 ui.mainTextArea.setText("No more days left.");
@@ -394,13 +397,13 @@ public class Story {
     public void parciales(){
         List<Materia> materias  = estudianteActual.getMaterias();
         int i = random.nextInt(materias.size());
-        double resultado = random.nextDouble();
+        double resultado = random.nextDouble() * 100;
         double probabilidadAprobarMateria = materias.get(i).getProbabilidadDeAprobar();
         if (resultado < probabilidadAprobarMateria){
-            ui.mainTextArea.setText("You did an " + materias.get(i).getNombre() + "exam. \nYou passed.");
+            ui.mainTextArea.setText("You did an " + materias.get(i).getNombre() + " exam. \nYou passed.");
             failedExams += 1;
         } else {
-            ui.mainTextArea.setText("You did an " + materias.get(i).getNombre() + "exam. \nYou failed.");
+            ui.mainTextArea.setText("You did an " + materias.get(i).getNombre() + " exam. \nYou failed.");
         }
     }
 

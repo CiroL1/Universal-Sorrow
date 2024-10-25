@@ -19,7 +19,7 @@ public class UI {
         button.setFocusPainted(false);
         button.setContentAreaFilled(true); // Allow content area to be filled
         button.setOpaque(true); // Ensures background color is displayed
-        button.setBorderPainted(true); // Hides border to prevent default rendering
+        button.setBorderPainted(true);
         button.addActionListener(cHandler);
         button.setActionCommand(actionCommand);
     }
