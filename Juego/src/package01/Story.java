@@ -143,31 +143,75 @@ public class Story {
         dias.add(domingo);
     }
 
-    //BUG: LUNES SE REPITE UNA VEZ Y CUANDO DOMINGO SE QUEDA SIN HORAS ACUMULA HORAS NEGATIVAS
-    public void selectPosition(String nextPosition){
-        switch(nextPosition){
-            case "Study": study();  break;
-            case "Sleep": sleep(); dia.setTiempo(dia.getTiempo() - 7); break;
-            case "Go out": goOut(); dia.setTiempo(dia.getTiempo() - 2); break;
-            case "Work": work(); break;
-            case ">": beggining(); ui.choice5.setVisible(false); break;
-            case "1": estudio("1"); dia.setTiempo(dia.getTiempo() - 1); break;
-            case "2": estudio("2"); dia.setTiempo(dia.getTiempo() - 1); break;
-            case "3": estudio("3"); dia.setTiempo(dia.getTiempo() - 1); break;
-            case "4": estudio("4"); dia.setTiempo(dia.getTiempo() - 1); break;
-            case "13": Trabajar("13"); dia.setTiempo(dia.getTiempo() - 3); break;
-            case "14": Trabajar("14"); dia.setTiempo(dia.getTiempo() - 3); break;
-            case "15": Trabajar("15"); dia.setTiempo(dia.getTiempo() - 3); break;
-            case "16": Trabajar("16"); dia.setTiempo(dia.getTiempo() - 3); break;
+    //BUG FIX: LUNES SE REPITE UNA VEZ Y CUANDO DOMINGO SE QUEDA SIN HORAS ACUMULA HORAS NEGATIVAS
+    public void selectPosition(String nextPosition) {
+        switch (nextPosition) {
+            case "Study":
+                study();
+                break;
+            case "Sleep":
+                sleep();
+                dia.setTiempo(dia.getTiempo() - 7);
+                break;
+            case "Go out":
+                goOut();
+                dia.setTiempo(dia.getTiempo() - 2);
+                break;
+            case "Work":
+                work();
+                break;
+            case ">":
+                beggining();
+                ui.choice5.setVisible(false);
+                break;
+            case "1":
+                estudio("1");
+                dia.setTiempo(dia.getTiempo() - 1);
+                break;
+            case "2":
+                estudio("2");
+                dia.setTiempo(dia.getTiempo() - 1);
+                break;
+            case "3":
+                estudio("3");
+                dia.setTiempo(dia.getTiempo() - 1);
+                break;
+            case "4":
+                estudio("4");
+                dia.setTiempo(dia.getTiempo() - 1);
+                break;
+            case "13":
+                Trabajar("13");
+                dia.setTiempo(dia.getTiempo() - 3);
+                break;
+            case "14":
+                Trabajar("14");
+                dia.setTiempo(dia.getTiempo() - 3);
+                break;
+            case "15":
+                Trabajar("15");
+                dia.setTiempo(dia.getTiempo() - 3);
+                break;
+            case "16":
+                Trabajar("16");
+                dia.setTiempo(dia.getTiempo() - 3);
+                break;
         }
+
+        // Ensure tiempo does not go below zero
+        if (dia.getTiempo() < 0) {
+            dia.setTiempo(0);
+        }
+
         actualizarDia(dia);
 
         // Verifica si el tiempo ha llegado a cero y pasa al siguiente día
-        if (dia.getTiempo() <= 0) {
+        if (dia.getTiempo() == 0) {
             pasarAlSiguienteDia();
         }
     }
 
+    //BUG: lunes se repite una vez antes de avanzar de día
     public void pasarAlSiguienteDia() {
         // Encuentra el índice del día actual en el ArrayList
         int indiceActual = dias.indexOf(dia);
@@ -202,6 +246,7 @@ public class Story {
     public void actualizarDia(Dia dia) {
         ui.daysTextArea.setText("Day: " + dia.getDia() + "\nHora: " + dia.getTiempo());
     }
+
 
     public void study(){
         ui.mainTextArea.setText("You decide to prepare yourself and study. \nChoose which one to begin with");
