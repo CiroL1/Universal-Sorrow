@@ -1,5 +1,8 @@
 package package01;
 import Objetos.*;
+
+import java.awt.*;
+import java.io.*;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
@@ -394,6 +397,7 @@ public class Story {
             ui.mainTextArea.setText("In the soft dusk, I chose the light. \nA breath of laughter, and the bottle sighed open—a slow pour of golden hope, filling the night.");
         }
 
+        gameResume();
         /*
         Fingers trace old promises, now shadows.
         A final kiss, heavy with silence.
@@ -404,5 +408,33 @@ public class Story {
 
     public void interaccionesNPC(){
 
+    }
+
+    public void gameResume(){
+        List<Materia> materias  = estudianteActual.getMaterias();
+        File archivo = new File("resumen_de_juego.txt");
+        try (FileWriter writer = new FileWriter(archivo)) {
+            // Escribir los datos de cada persona en el archivo
+            writer.write("Nombre del estudiante: " + estudianteActual.getNombre() + "\n");
+            writer.write("Cordura final: " + estudianteActual.getCordura() + "\n");
+            writer.write("Plata final: " + estudianteActual.getPlata() + "\n");
+            writer.write(materias.getFirst().getNombre() + " " + materias.getFirst().getProbabilidadDeAprobar() +"%"+ "\n");
+            writer.write(materias.get(1).getNombre() + " " + materias.get(1).getProbabilidadDeAprobar() +"%"+ "\n");
+            writer.write(materias.get(2).getNombre() + " " + materias.get(2).getProbabilidadDeAprobar() +"%"+ "\n");
+            writer.write(materias.getLast().getNombre() + " " + materias.getLast().getProbabilidadDeAprobar() +"%"+ "\n");
+            writer.write("Reputacion final: " + estudianteActual.getReputacion() + "\n");
+            System.out.println("Datos escritos en el archivo.");
+
+            // Intentar abrir el archivo automáticamente
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                if (archivo.exists()) {
+                    desktop.open(archivo);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Ocurrió un error al escribir en el archivo.");
+            e.printStackTrace();
+        }
     }
 }
