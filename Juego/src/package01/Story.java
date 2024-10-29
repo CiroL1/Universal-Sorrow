@@ -11,7 +11,7 @@ public class Story {
     Main main;
     UI ui;
     VisibilityManager vm;
-    private Estudiante estudianteActual;
+    private Jugador estudianteActual;
     private ArrayList<Trabajo> trabajosActual;
     Dia dia;
     private int contadorRepeticiones = 0;
@@ -38,7 +38,7 @@ public class Story {
     }
 
 
-    public Estudiante estudianteMarketing() {
+    public Jugador estudianteMarketing() {
         //easy
         String userName = ui.getName();
         ArrayList<Materia> materias = new ArrayList<>();
@@ -60,12 +60,12 @@ public class Story {
         trabajos.add(analistaMercado);
         trabajos.add(creadorContenido);
         Carrera marketing = new Carrera("Marketing", materias, bonos);
-        Estudiante estudiante = new Estudiante(userName, 100, 10000, 10, 100.0d,"jugador", marketing, materias);
+        Jugador estudiante = new Jugador(userName, 100, 10000, 10, 100.0d,"jugador", marketing, materias);
         setTrabajos(trabajos);
         return estudiante;
     }
 
-    public Estudiante estudianteArtes() {
+    public Jugador estudianteArtes() {
         //medium
         String userName = ui.getName();
         ArrayList<Materia> materias = new ArrayList<>();
@@ -87,12 +87,12 @@ public class Story {
         trabajos.add(bailarinFreelance);
         trabajos.add(artistaCallejero);
         Carrera artes = new Carrera("Artes", materias, bonos);
-        Estudiante estudiante = new Estudiante(userName, 100, 1000, 10, 100.0d,"jugador", artes, materias);
+        Jugador estudiante = new Jugador(userName, 100, 1000, 10, 100.0d,"jugador", artes, materias);
         setTrabajos(trabajos);
         return estudiante;
     }
 
-    public Estudiante estudianteIngenieria() {
+    public Jugador estudianteIngenieria() {
         //hard
         String userName = ui.getName();
         ArrayList<Materia> materias = new ArrayList<>();
@@ -114,13 +114,13 @@ public class Story {
         trabajos.add(ingenieroElectronico);
         trabajos.add(consultorProyectos);
         Carrera ingenieria = new Carrera("Ingenieria", materias, bonos);
-        Estudiante estudiante = new Estudiante(userName, 100, 5000, 10, 100.0d,"jugador", ingenieria, materias);
+        Jugador estudiante = new Jugador(userName, 100, 5000, 10, 100.0d,"jugador", ingenieria, materias);
         setTrabajos(trabajos);
         return estudiante;
     }
 
     public void difficultyChosen(String dificultad) {
-        Estudiante estudiante = switch (dificultad) {
+        Jugador estudiante = switch (dificultad) {
             case "easy" -> estudianteMarketing(); // Genera estudiante de Marketing
             case "medium" -> estudianteArtes(); // Genera estudiante de Artes
             case "hard" -> estudianteIngenieria(); // Genera estudiante de Ingeniería
@@ -135,7 +135,7 @@ public class Story {
         this.trabajosActual = trabajos;
     }
 
-    public void setEstudiante(Estudiante estudiante) {
+    public void setEstudiante(Jugador estudiante) {
         this.estudianteActual = estudiante; //Método para establecer el estudiante
     }
 
@@ -431,7 +431,7 @@ public class Story {
             writer.write(materias.get(1).getNombre() + " " + materias.get(1).getProbabilidadDeAprobar() +"%"+ "\n");
             writer.write(materias.get(2).getNombre() + " " + materias.get(2).getProbabilidadDeAprobar() +"%"+ "\n");
             writer.write(materias.getLast().getNombre() + " " + materias.getLast().getProbabilidadDeAprobar() +"%"+ "\n");
-            writer.write("Reputacion final: " + estudianteActual.getReputacion() + "\n");
+            writer.write("Reputacion final: " + Math.round(estudianteActual.getReputacion()) + "\n");
             System.out.println("Datos escritos en el archivo.");
 
             // Intentar abrir el archivo automáticamente
