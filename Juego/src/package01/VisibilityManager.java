@@ -12,11 +12,11 @@ public class VisibilityManager {
         ui.titleNamePanel.setVisible(true);
         ui.startButtonPanel.setVisible(true);
         ui.quitButtonPanel.setVisible(true);
-        ui.explanationButtonPanel.setVisible(false);
+        ui.nameButtonPanel.setVisible(false);
         //hide difficulty screen
         ui.difficultyPanel.setVisible(false);
-        //hide how to play the game screen
-        ui.explanationPanel.setVisible(false);
+        //hide name screen
+        ui.namePanel.setVisible(false);
         //hide game screen
         ui.daysTextArea.setVisible(false);
         ui.mainTextPanel.setVisible(false);
@@ -29,11 +29,11 @@ public class VisibilityManager {
         ui.titleNamePanel.setVisible(false);
         ui.startButtonPanel.setVisible(false);
         ui.quitButtonPanel.setVisible(false);
-        ui.explanationButtonPanel.setVisible(false);
+        ui.nameButtonPanel.setVisible(false);
         //show difficulty screen
         ui.difficultyPanel.setVisible(true);
-        //hide how to play the game screen
-        ui.explanationPanel.setVisible(false);
+        //hide name screen
+        ui.namePanel.setVisible(false);
         //hide game screen
         ui.daysTextArea.setVisible(false);
         ui.mainTextPanel.setVisible(false);
@@ -46,11 +46,11 @@ public class VisibilityManager {
         ui.titleNamePanel.setVisible(false);
         ui.startButtonPanel.setVisible(false);
         ui.quitButtonPanel.setVisible(false);
-        ui.explanationButtonPanel.setVisible(true);
+        ui.nameButtonPanel.setVisible(true);
         //hide difficulty screen
         ui.difficultyPanel.setVisible(false);
-        //hide how to play the game screen
-        ui.explanationPanel.setVisible(true);
+        //hide name screen
+        ui.namePanel.setVisible(true);
         //hide game screen
         ui.daysTextArea.setVisible(false);
         ui.mainTextPanel.setVisible(false);
@@ -63,11 +63,11 @@ public class VisibilityManager {
         ui.titleNamePanel.setVisible(false);
         ui.startButtonPanel.setVisible(false);
         ui.quitButtonPanel.setVisible(false);
-        ui.explanationButtonPanel.setVisible(false);
+        ui.nameButtonPanel.setVisible(false);
         //hide difficulty screen
         ui.difficultyPanel.setVisible(false);
-        //hide how to play the game screen
-        ui.explanationPanel.setVisible(false);
+        //hide name screen
+        ui.namePanel.setVisible(false);
         //show game screen
         ui.daysTextArea.setVisible(true);
         ui.mainTextPanel.setVisible(true);
@@ -81,11 +81,11 @@ public class VisibilityManager {
         ui.titleNamePanel.setVisible(false);
         ui.startButtonPanel.setVisible(false);
         ui.quitButtonPanel.setVisible(false);
-        ui.explanationButtonPanel.setVisible(false);
+        ui.nameButtonPanel.setVisible(false);
         //hide difficulty screen
         ui.difficultyPanel.setVisible(false);
         //hide how to play the game screen
-        ui.explanationPanel.setVisible(false);
+        ui.namePanel.setVisible(false);
         //show game screen except choices
         ui.daysTextArea.setVisible(true);
         ui.mainTextPanel.setVisible(true);

@@ -5,10 +5,11 @@ import java.awt.*;
 
 public class UI {
     JFrame window;
-    JPanel titleNamePanel, startButtonPanel,quitButtonPanel, explanationPanel, explanationButtonPanel, difficultyPanel, mainTextPanel, choiceButtonPanel, playerPanel;
+    JPanel titleNamePanel, startButtonPanel,quitButtonPanel, namePanel, nameButtonPanel, difficultyPanel, mainTextPanel, choiceButtonPanel, playerPanel;
     JLabel titleNameLabel, sanityLabel, sNumberLabel, moneyLabel, moneyNameLabel, reputationLabel, repNameLabel;
     JButton startButton, quitButton, nextButton, difEasy, difMedium, difHard, choice1, choice2, choice3, choice4, choice5;
-    JTextArea mainTextArea, daysTextArea, gameExplanation, difTextArea;
+    JTextArea mainTextArea, daysTextArea, nameTextArea, difTextArea;
+    JTextField nameTextField;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 26);
 
@@ -48,21 +49,40 @@ public class UI {
         titleNameLabel.setFont(titleFont);
         titleNamePanel.add(titleNameLabel);
 
+        //name screen
+        // Create and configure the name panel
+        namePanel = new JPanel();
+        namePanel.setBounds(40, 100, 600, 300);
+        namePanel.setBackground(Color.black);
 
-        //REVISAR CONFIGURACION DENTRO DE LA VENTANA, NO ESTA BIEN POSICIONADO NI BIEN SUS BOUNDS
-        //game explanation
-        explanationPanel = new JPanel();
-        explanationPanel.setBounds(40,100,600,300);
-        explanationPanel.setBackground(Color.black);
-        gameExplanation = new JTextArea("This is the game explanation text");
-        gameExplanation.setBackground(Color.black);
-        gameExplanation.setForeground(Color.white);
-        gameExplanation.setFont(normalFont);
-        gameExplanation.setLineWrap(true);
-        gameExplanation.setWrapStyleWord(true);
-        gameExplanation.setEditable(false);
-        explanationPanel.add(gameExplanation);
-        window.add(explanationPanel);
+        // Set the layout to BoxLayout with a vertical axis
+        namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.Y_AXIS));
+
+        // Create and configure the text area
+        nameTextArea = new JTextArea("Write your name");
+        nameTextArea.setBackground(Color.black);
+        nameTextArea.setForeground(Color.white);
+        nameTextArea.setFont(normalFont);
+        nameTextArea.setLineWrap(true);
+        nameTextArea.setWrapStyleWord(true);
+        nameTextArea.setEditable(false);
+
+        // Add the text area to the panel
+        namePanel.add(nameTextArea);
+
+        // Create and configure the text field for name input
+        nameTextField = new JTextField();
+        nameTextField.setMaximumSize(new Dimension(400, 30)); // Set preferred width and height
+        nameTextField.setFont(normalFont);
+        nameTextField.setBackground(Color.black);
+        nameTextField.setForeground(Color.white);
+        nameTextField.setCaretColor(Color.white); // Makes the cursor visible
+
+        // Add the text field to the panel
+        namePanel.add(nameTextField);
+
+        // Add the panel to the window
+        window.add(namePanel);
 
         //buttons
         startButton = new JButton("Start");
@@ -115,14 +135,14 @@ public class UI {
         quitButtonPanel.setVisible(true);
 
         //how the game works button
-        explanationButtonPanel = new JPanel();
-        explanationButtonPanel.setBounds(300, 450, 200, 100);
-        explanationButtonPanel.setBackground(Color.black);
-        explanationButtonPanel.add(nextButton);
-        explanationButtonPanel.setVisible(false);
+        nameButtonPanel = new JPanel();
+        nameButtonPanel.setBounds(300, 450, 200, 100);
+        nameButtonPanel.setBackground(Color.black);
+        nameButtonPanel.add(nextButton);
+        nameButtonPanel.setVisible(false);
 
         window.add(titleNamePanel);
-        window.add(explanationButtonPanel);
+        window.add(nameButtonPanel);
         window.add(startButtonPanel);
         window.add(quitButtonPanel);
 
@@ -246,5 +266,9 @@ public class UI {
         playerPanel.setVisible(false);
 
         window.setVisible(true);
+    }
+
+    public String getName(){
+        return nameTextField.getText();
     }
 }

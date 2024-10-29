@@ -40,6 +40,7 @@ public class Story {
 
     public Estudiante estudianteMarketing() {
         //easy
+        String userName = ui.getName();
         ArrayList<Materia> materias = new ArrayList<>();
         materias.add(new Materia("Marketing Digital", 2, 0.85));
         materias.add(new Materia("Estrategias de Precios", 3, 0.65));
@@ -59,13 +60,14 @@ public class Story {
         trabajos.add(analistaMercado);
         trabajos.add(creadorContenido);
         Carrera marketing = new Carrera("Marketing", materias, bonos);
-        Estudiante estudiante = new Estudiante("juan", 100, 10000, 10, 100.0d,"jugador", marketing, materias);
+        Estudiante estudiante = new Estudiante(userName, 100, 10000, 10, 100.0d,"jugador", marketing, materias);
         setTrabajos(trabajos);
         return estudiante;
     }
 
     public Estudiante estudianteArtes() {
         //medium
+        String userName = ui.getName();
         ArrayList<Materia> materias = new ArrayList<>();
         materias.add(new Materia("Actuación I", 2, 0.85));
         materias.add(new Materia("Teatro Contemporáneo", 2, 0.75));
@@ -85,13 +87,14 @@ public class Story {
         trabajos.add(bailarinFreelance);
         trabajos.add(artistaCallejero);
         Carrera artes = new Carrera("Artes", materias, bonos);
-        Estudiante estudiante = new Estudiante("juan", 100, 1000, 10, 100.0d,"jugador", artes, materias);
+        Estudiante estudiante = new Estudiante(userName, 100, 1000, 10, 100.0d,"jugador", artes, materias);
         setTrabajos(trabajos);
         return estudiante;
     }
 
     public Estudiante estudianteIngenieria() {
         //hard
+        String userName = ui.getName();
         ArrayList<Materia> materias = new ArrayList<>();
         materias.add(new Materia("Matemáticas I", 2, 0.85));
         materias.add(new Materia("Física I", 3, 0.75));
@@ -111,7 +114,7 @@ public class Story {
         trabajos.add(ingenieroElectronico);
         trabajos.add(consultorProyectos);
         Carrera ingenieria = new Carrera("Ingenieria", materias, bonos);
-        Estudiante estudiante = new Estudiante("juan", 100, 5000, 10, 100.0d,"jugador", ingenieria, materias);
+        Estudiante estudiante = new Estudiante(userName, 100, 5000, 10, 100.0d,"jugador", ingenieria, materias);
         setTrabajos(trabajos);
         return estudiante;
     }
@@ -254,7 +257,7 @@ public class Story {
 
     public void beggining() {
         ui.daysTextArea.setText("Day: " + dia.getDia() + "\nHora: " + dia.getTiempo());
-        ui.mainTextArea.setText("The final exams are coming \nWhat are you going to do?");
+        ui.mainTextArea.setText("2 weeks before final exams \nWhat are you going to do?");
         ui.choice1.setText("Study");
         ui.choice2.setText("Sleep");
         ui.choice3.setText("Go out");
