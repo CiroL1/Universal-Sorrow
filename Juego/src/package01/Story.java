@@ -397,7 +397,11 @@ public class Story {
         } else if (corduraFinal >= 30 && failedExams <= 2) {
             ui.mainTextArea.setText("to be set");
         } else if (corduraFinal >= 70 && reputacionFinal >= 70 && failedExams <= 1) {
-            ui.mainTextArea.setText("to be set");
+            ui.mainTextArea.setText("""
+                    Fingers trace old promises, now shadows.\s
+                    A final kiss, heavy with silence.\s
+                    Sheets tangled, bodies drift apart—\s
+                    echoes of love, fading with morning light.""");
         } else if (corduraFinal >= 90 && reputacionFinal >= 90 && plataFinal >= 50 && failedExams == 0) {
             ui.mainTextArea.setText("In the soft dusk, I chose the light. \nA breath of laughter, and the bottle sighed open—a slow pour of golden hope, filling the night.");
         } else {
@@ -405,12 +409,6 @@ public class Story {
         }
 
         gameResume();
-        /*
-        Fingers trace old promises, now shadows.
-        A final kiss, heavy with silence.
-        Sheets tangled, bodies drift apart—
-        echoes of love, fading with morning light.
-        */
     }
 
     public void interaccionesNPC(){
