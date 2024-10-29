@@ -403,11 +403,12 @@ public class Story {
                     Sheets tangled, bodies drift apart—\s
                     echoes of love, fading with morning light.""");
         } else if (corduraFinal >= 90 && reputacionFinal >= 90 && plataFinal >= 50 && failedExams == 0) {
-            ui.mainTextArea.setText("In the soft dusk, I chose the light. \nA breath of laughter, and the bottle sighed open—a slow pour of golden hope, filling the night.");
+            ui.mainTextArea.setText("""
+                In the soft dusk, I chose the light. \s
+                A breath of laughter, and the bottle sighed open—a slow pour of golden hope, filling the night.""");
         } else {
             ui.mainTextArea.setText("to be set");
         }
-
         gameResume();
     }
 
