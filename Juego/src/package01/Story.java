@@ -415,10 +415,6 @@ public class Story {
         gameResume();
     }
 
-    public void interaccionesNPC(){
-
-    }
-
     public void gameResume(){
         List<Materia> materias  = estudianteActual.getMaterias();
         File archivo = new File("resumen_de_juego.txt");
