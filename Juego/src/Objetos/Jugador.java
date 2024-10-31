@@ -8,11 +8,6 @@ public class Jugador extends Estudiante {
         super(nombre, cordura, plata, capacidadDeestudio, reputacion, tipo, carrera, materias);
     }
 
-    // Add specific methods for the player here
-    public void realizarAccion() {
-        System.out.println(nombre + " está realizando una acción como Jugador.");
-    }
-
     //Metodos
     public void estudiar(Materia materia){
         double actual = materia.getProbabilidadDeAprobar();
