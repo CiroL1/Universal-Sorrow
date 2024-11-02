@@ -391,33 +391,43 @@ public class Story {
             ui.mainTextArea.setText("In the quiet, I chose the sea. \nA final exhale, and the waves held me gently, where silence felt like home.");
         } else if (failedExams > 3 && reputacionFinal < 30) {
             ui.mainTextArea.setText("""
-                    Fingers trace the edge of emptiness, \s
-                    laughter swallowed by shadows. \s
-                    Solitude wraps tight, \s
-                    dreams slipping into darkness.""");
+                Fingers trace the edge of emptiness, \s
+                laughter swallowed by shadows. \s
+                Solitude wraps tight, \s
+                dreams slipping into darkness.""");
         } else if (corduraFinal < 30 && failedExams <= 3) {
-            ui.mainTextArea.setText("to be set");
+            ui.mainTextArea.setText("""
+                In fragmented mirrors, I found myself lost.\s
+                Whispers echo, doubts creeping close.\s
+                A fragile resolve splintered by each missed step.""");
         } else if (corduraFinal >= 30 && failedExams <= 2) {
-            ui.mainTextArea.setText("to be set");
+            ui.mainTextArea.setText("""
+                Beneath dim lights, I held to fleeting solace.\s
+                Each sigh a gentle surrender, \s
+                and dreams drifted like smoke, fading at dawn.""");
         } else if (corduraFinal >= 70 && reputacionFinal >= 70 && failedExams <= 1) {
             ui.mainTextArea.setText("""
-                    Fingers trace old promises, now shadows.\s
-                    A final kiss, heavy with silence.\s
-                    Sheets tangled, bodies drift apart—\s
-                    echoes of love, fading with morning light.""");
+                Fingers trace old promises, now shadows.\s
+                A final kiss, heavy with silence.\s
+                Sheets tangled, bodies drift apart—\s
+                echoes of love, fading with morning light.""");
         } else if (corduraFinal >= 90 && reputacionFinal >= 90 && plataFinal >= 50 && failedExams == 0) {
             ui.mainTextArea.setText("""
-                In the soft dusk, I chose the light. \s
-                A breath of laughter, and the bottle sighed open—a slow pour of golden hope, filling the night.""");
+            In the soft dusk, I chose the light. \s
+            A breath of laughter, and the bottle sighed open—a slow pour of golden hope, filling the night.""");
         } else {
-            ui.mainTextArea.setText("to be set");
+            ui.mainTextArea.setText("""
+                Among hollow triumphs, I wandered alone.\s
+                Echoes lingered, each step chasing shadows,\s
+                dreams scattered beneath a fading sky.""");
         }
         gameResume();
     }
 
+
     public void gameResume(){
         List<Materia> materias  = estudianteActual.getMaterias();
-        File archivo = new File("resumen_de_juego.txt");
+        File archivo = new File("resumen_de_juego.json");
         try (FileWriter writer = new FileWriter(archivo)) {
             // Escribir los datos de cada persona en el archivo
             writer.write("Nombre del estudiante: " + estudianteActual.getNombre() + "\n");
