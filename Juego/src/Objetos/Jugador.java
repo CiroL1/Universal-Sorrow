@@ -1,10 +1,11 @@
 package Objetos;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Jugador extends Estudiante {
     // Constructor
-    public Jugador(String nombre, double cordura, double plata, int capacidadDeestudio, double reputacion, String tipo, Carrera carrera, List<Materia> materias) {
+    public Jugador(String nombre, double cordura, double plata, int capacidadDeestudio, double reputacion, String tipo, Carrera carrera, HashMap<Integer, Materia> materias) {
         super(nombre, cordura, plata, capacidadDeestudio, reputacion, tipo, carrera, materias);
     }
 

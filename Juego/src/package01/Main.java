@@ -1,5 +1,6 @@
 package package01;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,8 +19,12 @@ public class Main {
     }
 
     public Main() {
-        ui.createUI(cHandler);
-        vm.showTitleScreen();
+        try{
+            ui.createUI(cHandler);
+            vm.showTitleScreen();
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     public class ChoiceHandler implements ActionListener {

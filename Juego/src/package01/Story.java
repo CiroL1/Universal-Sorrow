@@ -3,6 +3,7 @@ import Objetos.*;
 
 import java.awt.*;
 import java.io.*;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,11 +42,12 @@ public class Story {
     public Jugador estudianteMarketing() {
         //easy
         String userName = ui.getName();
-        ArrayList<Materia> materias = new ArrayList<>();
-        materias.add(new Materia("Marketing Digital", 2, 0.85));
-        materias.add(new Materia("Estrategias de Precios", 3, 0.65));
-        materias.add(new Materia("Ventas y Negociación", 3, 0.75));
-        materias.add(new Materia("Ética en el Marketing", 1, 0.95));
+        HashMap<Integer, Materia> materias = new HashMap<>();
+        // Agrega las materias al HashMap
+        materias.put(1, new Materia("Marketing Digital", 2, 0.85));
+        materias.put(2, new Materia("Estrategias de Precios", 3, 0.65));
+        materias.put(3, new Materia("Ventas y Negociación", 3, 0.75));
+        materias.put(4, new Materia("Ética en el Marketing", 1, 0.95));
         ArrayList<Bono> bonos = new ArrayList<>();
         bonos.add(new Bono(1, 0.2d, 9999));
         bonos.add(new Bono(2, 1.0d, 9999));
@@ -68,12 +70,12 @@ public class Story {
     public Jugador estudianteArtes() {
         //medium
         String userName = ui.getName();
-        ArrayList<Materia> materias = new ArrayList<>();
-        materias.add(new Materia("Actuación I", 2, 0.85));
-        materias.add(new Materia("Teatro Contemporáneo", 2, 0.75));
-        materias.add(new Materia("Danza y Movimiento", 1, 0.90));
-        materias.add(new Materia("Dirección Teatral", 3, 0.65));
-        ArrayList<Bono> bonos = new ArrayList<>();
+        HashMap<Integer, Materia> materias = new HashMap<>();
+        // Agregar cada materia al HashMap con un índice
+        materias.put(1, new Materia("Actuación I", 2, 0.85));
+        materias.put(2, new Materia("Teatro Contemporáneo", 2, 0.75));
+        materias.put(3, new Materia("Danza y Movimiento", 1, 0.90));
+        materias.put(4, new Materia("Dirección Teatral", 3, 0.65));ArrayList<Bono> bonos = new ArrayList<>();
         bonos.add(new Bono(1, 0.2d, 9999));
         bonos.add(new Bono(2, 1.0d, 9999));
         bonos.add(new Bono(3, 1.0d, 9999));
@@ -95,12 +97,12 @@ public class Story {
     public Jugador estudianteIngenieria() {
         //hard
         String userName = ui.getName();
-        ArrayList<Materia> materias = new ArrayList<>();
-        materias.add(new Materia("Matemáticas I", 2, 0.85));
-        materias.add(new Materia("Física I", 3, 0.75));
-        materias.add(new Materia("Programación I", 1, 0.90));
-        materias.add(new Materia("Estadística", 1, 0.85));
-        ArrayList<Bono> bonos = new ArrayList<>();
+        HashMap<Integer, Materia> materias = new HashMap<>();
+        // Agregar cada materia al HashMap con un índice
+        materias.put(1, new Materia("Matemáticas I", 2, 0.85));
+        materias.put(2, new Materia("Física I", 3, 0.75));
+        materias.put(3, new Materia("Programación I", 1, 0.90));
+        materias.put(4, new Materia("Estadística", 1, 0.85));ArrayList<Bono> bonos = new ArrayList<>();
         bonos.add(new Bono(1, 0.2d, 9999));
         bonos.add(new Bono(2, 1.0d, 9999));
         bonos.add(new Bono(3, 1.0d, 9999));
@@ -277,11 +279,19 @@ public class Story {
 
     public void study(){
         ui.mainTextArea.setText("You decide to prepare yourself and study. \nChoose which one to begin with");
-        List<Materia> materias  = estudianteActual.getMaterias();
-        ui.choice1.setText(materias.getFirst().getNombre());
-        ui.choice2.setText(materias.get(1).getNombre());
-        ui.choice3.setText(materias.get(2).getNombre());
-        ui.choice4.setText(materias.getLast().getNombre());
+        // Cambia la lista a un HashMap en la clase Estudiante
+        HashMap<Integer, Materia> materias = estudianteActual.getMaterias();
+
+        // Luego, cuando quieras acceder a las materias
+        ui.choice1.setText(materias.get(1).getNombre());
+        ui.choice2.setText(materias.get(2).getNombre());
+        ui.choice3.setText(materias.get(3).getNombre());
+        ui.choice4.setText(materias.get(4).getNombre());
+
+        ui.choice1.setText(materias.get(1).getNombre());
+        ui.choice2.setText(materias.get(2).getNombre());
+        ui.choice3.setText(materias.get(3).getNombre());
+        ui.choice4.setText(materias.get(4).getNombre());
         ui.choice5.setVisible(true);
 
         main.nextPosition1 = "1";
@@ -319,22 +329,22 @@ public class Story {
     }
 
     public void estudio(String materia){
-        List<Materia> materias  = estudianteActual.getMaterias();
+        HashMap<Integer, Materia> materias = estudianteActual.getMaterias();
         switch (materia){
-            case "1": ui.mainTextArea.setText("You study " + materias.getFirst().getNombre() + ".\nPassing chances " + materias.getFirst().getProbabilidadDeAprobar() + "%");
-                estudianteActual.estudiar(materias.getFirst());
-                updateTexts();
-                break;
-            case "2": ui.mainTextArea.setText("You study " + materias.get(1).getNombre() + ".\nPassing chances " + materias.get(1).getProbabilidadDeAprobar() + "%");
+            case "1": ui.mainTextArea.setText("You study " + materias.get(1).getNombre() + ".\nPassing chances " + materias.get(1).getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.get(1));
                 updateTexts();
                 break;
-            case "3": ui.mainTextArea.setText("You study " + materias.get(2).getNombre() + ".\nPassing chances " + materias.get(2).getProbabilidadDeAprobar() + "%");
+            case "2": ui.mainTextArea.setText("You study " + materias.get(2).getNombre() + ".\nPassing chances " + materias.get(2).getProbabilidadDeAprobar() + "%");
                 estudianteActual.estudiar(materias.get(2));
                 updateTexts();
                 break;
-            case "4": ui.mainTextArea.setText("You study " + materias.getLast().getNombre() + ".\nPassing chances " + materias.getLast().getProbabilidadDeAprobar() + "%");
-                estudianteActual.estudiar(materias.getLast());
+            case "3": ui.mainTextArea.setText("You study " + materias.get(3).getNombre() + ".\nPassing chances " + materias.get(3).getProbabilidadDeAprobar() + "%");
+                estudianteActual.estudiar(materias.get(3));
+                updateTexts();
+                break;
+            case "4": ui.mainTextArea.setText("You study " + materias.get(4).getNombre() + ".\nPassing chances " + materias.get(4).getProbabilidadDeAprobar() + "%");
+                estudianteActual.estudiar(materias.get(4));
                 updateTexts();
                 break;
         }
@@ -369,7 +379,7 @@ public class Story {
     }
 
     public void parciales(){
-        List<Materia> materias  = estudianteActual.getMaterias();
+        HashMap<Integer, Materia> materias = estudianteActual.getMaterias();
         int i = random.nextInt(materias.size());
         double resultado = random.nextDouble() * 100;
         double probabilidadAprobarMateria = materias.get(i).getProbabilidadDeAprobar();
@@ -426,17 +436,17 @@ public class Story {
 
 
     public void gameResume(){
-        List<Materia> materias  = estudianteActual.getMaterias();
+        HashMap<Integer, Materia> materias = estudianteActual.getMaterias();
         File archivo = new File("resumen_de_juego.json");
         try (FileWriter writer = new FileWriter(archivo)) {
             // Escribir los datos de cada persona en el archivo
             writer.write("Nombre del estudiante: " + estudianteActual.getNombre() + "\n");
             writer.write("Cordura final: " + estudianteActual.getCordura() + "\n");
             writer.write("Plata final: " + estudianteActual.getPlata() + "\n");
-            writer.write(materias.getFirst().getNombre() + " " + materias.getFirst().getProbabilidadDeAprobar() +"%"+ "\n");
             writer.write(materias.get(1).getNombre() + " " + materias.get(1).getProbabilidadDeAprobar() +"%"+ "\n");
             writer.write(materias.get(2).getNombre() + " " + materias.get(2).getProbabilidadDeAprobar() +"%"+ "\n");
-            writer.write(materias.getLast().getNombre() + " " + materias.getLast().getProbabilidadDeAprobar() +"%"+ "\n");
+            writer.write(materias.get(3).getNombre() + " " + materias.get(3).getProbabilidadDeAprobar() +"%"+ "\n");
+            writer.write(materias.get(4).getNombre() + " " + materias.get(4).getProbabilidadDeAprobar() +"%"+ "\n");
             writer.write("Reputacion final: " + Math.round(estudianteActual.getReputacion()) + "\n");
             System.out.println("Datos escritos en el archivo.");
 

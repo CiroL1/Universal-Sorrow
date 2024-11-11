@@ -1,13 +1,14 @@
 package Objetos;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Carrera {
     private String nombre;
-    private ArrayList<Materia> materias;
+    private HashMap<Integer, Materia> materias;
     private ArrayList<Bono> bonos;
 
-    public Carrera(String nombre, ArrayList<Materia> materias, ArrayList<Bono> bonos) {
+    public Carrera(String nombre, HashMap<Integer, Materia> materias, ArrayList<Bono> bonos) {
         this.nombre = nombre;
         this.materias = materias;
         this.bonos = bonos;
@@ -21,11 +22,11 @@ public class Carrera {
         this.nombre = nombre;
     }
 
-    public ArrayList<Materia> getMaterias() {
+    public HashMap<Integer, Materia> getMaterias() {
         return materias;
     }
 
-    public void setMaterias(ArrayList<Materia> materias) {
+    public void setMaterias(HashMap<Integer, Materia> materias) {
         this.materias = materias;
     }
 

@@ -1,5 +1,6 @@
 package Objetos;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Estudiante {
@@ -9,10 +10,10 @@ public class Estudiante {
     protected int capacidadDeestudio; //aumento de la probabilidad de aprobar
     protected String tipo; // "Jugador" o "NPC"
     protected Carrera carrera;
-    protected List<Materia> materias;
+    protected HashMap<Integer, Materia> materias;
     protected double reputacion;
 
-    public Estudiante(String nombre, double cordura, double plata, int capacidadDeestudio, double reputacion, String tipo, Carrera carrera, List<Materia> materias) {
+    public Estudiante(String nombre, double cordura, double plata, int capacidadDeestudio, double reputacion, String tipo, Carrera carrera, HashMap<Integer, Materia> materias) {
         this.nombre = nombre;
         this.cordura = cordura;
         this.plata = plata;
@@ -71,11 +72,11 @@ public class Estudiante {
         this.carrera = carrera;
     }
 
-    public List<Materia> getMaterias() {
+    public HashMap<Integer, Materia> getMaterias() {
         return materias;
     }
 
-    public void setMaterias(List<Materia> materias) {
+    public void setMaterias(HashMap<Integer, Materia> materias) {
         this.materias = materias;
     }
 
