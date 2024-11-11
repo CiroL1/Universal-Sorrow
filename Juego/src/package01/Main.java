@@ -23,7 +23,7 @@ public class Main {
             ui.createUI(cHandler);
             vm.showTitleScreen();
         } catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
